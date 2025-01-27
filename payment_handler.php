@@ -3,8 +3,16 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-define('FASTSOFT_SECRET_KEY', '2a67e358-53c6-48df-a825-f11c3f502a7b'); // sua chave
-define('FASTSOFT_API_URL', 'https://api.hypercashbrasil.com.br/api/user/transactions');
+// Carrega variáveis de ambiente do arquivo .env se existir
+if (file_exists(__DIR__ . '/.env')) {
+    $envVars = parse_ini_file(__DIR__ . '/.env');
+    foreach ($envVars as $key => $value) {
+        $_ENV[$key] = $value;
+    }
+}
+
+define('FASTSOFT_SECRET_KEY', $_ENV['FASTSOFT_SECRET_KEY'] ?? '');
+define('FASTSOFT_API_URL', $_ENV['FASTSOFT_API_URL'] ?? 'https://api.hypercashbrasil.com.br/api/user/transactions');
 define('LOG_FILE', 'debug.txt');
 define('LEADS_FILE', __DIR__ . '/data/leads.json');
 define('TRANSACTIONS_FILE', __DIR__ . '/data/transactions.json');
