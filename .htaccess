@@ -1,0 +1,17 @@
+# Proteger diretório de dados
+<Files ~ "^data/">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Proteger logs
+<Files ~ "\.(log|txt)$">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Proteger arquivos PHP exceto index.php e endpoints necessários
+<FilesMatch "^(?!index\.php|payment_handler\.php|salvar_log\.php).*\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch> 

@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /debug.log
+Disallow: /composer.json
+Disallow: /composer.lock 

@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "name": "Test User",
+        "email": "test@example.com",
+        "card_last4": "1111",
+        "subscription_status": "active",
+        "next_charge": "2024-03-24",
+        "created_at": "2024-03-17 10:00:00"
+    }
+] 
