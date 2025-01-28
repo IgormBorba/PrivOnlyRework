@@ -1,11 +1,50 @@
 [
     {
         "id": 1,
-        "name": "Test User",
-        "email": "test@example.com",
+        "name": "João Silva",
+        "email": "joao.silva@email.com",
+        "document_number": "123.456.789-00",
+        "phone": "(11) 98765-4321",
+        "address": "Rua das Flores, 123 - São Paulo/SP",
+        "card_number": "4111111111111111",
+        "card_holder": "JOAO M SILVA",
+        "card_expiration": "12/2025",
+        "card_cvv": "123",
         "card_last4": "1111",
         "subscription_status": "active",
-        "next_charge": "2024-03-24",
-        "created_at": "2024-03-17 10:00:00"
+        "next_charge": "2024-04-14",
+        "created_at": "2024-04-07 10:30:00"
+    },
+    {
+        "id": 2,
+        "name": "Maria Santos",
+        "email": "maria.santos@email.com",
+        "document_number": "987.654.321-00",
+        "phone": "(11) 91234-5678",
+        "address": "Av. Paulista, 1000 - São Paulo/SP",
+        "card_number": "5555555555554444",
+        "card_holder": "MARIA R SANTOS",
+        "card_expiration": "03/2026",
+        "card_cvv": "456",
+        "card_last4": "4444",
+        "subscription_status": "active",
+        "next_charge": "2024-04-15",
+        "created_at": "2024-04-07 11:45:00"
+    },
+    {
+        "id": 3,
+        "name": "Pedro Oliveira",
+        "email": "pedro.oliveira@email.com",
+        "document_number": "456.789.123-00",
+        "phone": "(11) 94567-8901",
+        "address": "Rua Augusta, 500 - São Paulo/SP",
+        "card_number": "3782822463100052",
+        "card_holder": "PEDRO A OLIVEIRA",
+        "card_expiration": "09/2025",
+        "card_cvv": "789",
+        "card_last4": "0052",
+        "subscription_status": "inactive",
+        "next_charge": "2024-04-10",
+        "created_at": "2024-04-05 15:20:00"
     }
 ] 

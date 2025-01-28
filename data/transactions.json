@@ -3,8 +3,48 @@
         "id": 1,
         "lead_id": 1,
         "status": "approved",
-        "amount": 4340,
-        "transaction_id": "test_123",
-        "created_at": "2024-03-17 10:00:00"
+        "amount": 9990,
+        "transaction_id": "tr_123456789",
+        "created_at": "2024-04-07 10:30:00"
+    },
+    {
+        "id": 2,
+        "lead_id": 1,
+        "status": "approved",
+        "amount": 9990,
+        "transaction_id": "tr_123456790",
+        "created_at": "2024-04-07 10:35:00"
+    },
+    {
+        "id": 3,
+        "lead_id": 2,
+        "status": "approved",
+        "amount": 9990,
+        "transaction_id": "tr_123456791",
+        "created_at": "2024-04-07 11:45:00"
+    },
+    {
+        "id": 4,
+        "lead_id": 3,
+        "status": "rejected",
+        "amount": 9990,
+        "transaction_id": "tr_123456792",
+        "created_at": "2024-04-05 15:20:00"
+    },
+    {
+        "id": 5,
+        "lead_id": 3,
+        "status": "approved",
+        "amount": 9990,
+        "transaction_id": "tr_123456793",
+        "created_at": "2024-04-05 15:25:00"
+    },
+    {
+        "id": 6,
+        "lead_id": 3,
+        "status": "rejected",
+        "amount": 9990,
+        "transaction_id": "tr_123456794",
+        "created_at": "2024-04-06 10:00:00"
     }
 ] 

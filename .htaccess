@@ -10,8 +10,43 @@
     Deny from all
 </Files>
 
-# Proteger arquivos PHP exceto index.php e endpoints necessários
-<FilesMatch "^(?!index\.php|payment_handler\.php|salvar_log\.php).*\.php$">
+# Proteger arquivos PHP exceto os necessários e diretório admin
+<FilesMatch "^(?!index\.php|payment_handler\.php|salvar_log\.php|admin/.*).*\.php$">
     Order allow,deny
     Deny from all
-</FilesMatch> 
+</FilesMatch>
+
+# Configurações do PHP
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+php_value max_execution_time 300
+php_value max_input_time 300
+
+# Habilitar rewrite engine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # Não aplicar regras para o diretório admin
+    RewriteRule ^admin/ - [L]
+    
+    # Para todas as outras requisições
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# Configurações do diretório admin
+<Directory "admin">
+    Options +FollowSymLinks +Indexes
+    Order allow,deny
+    Allow from all
+    Require all granted
+    
+    # Permitir todos os arquivos PHP no diretório admin
+    <FilesMatch "\.php$">
+        Order allow,deny
+        Allow from all
+        Require all granted
+    </FilesMatch>
+</Directory> 

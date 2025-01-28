@@ -1,13 +1,10 @@
-Options -Indexes
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^ index.php [L]
-</IfModule>
+# Permitir execução de PHP e acesso aos arquivos
+Options +FollowSymLinks +Indexes
+Order allow,deny
+Allow from all
 
-# Proteger arquivos sensíveis
-<FilesMatch "^(debug\.log|composer\.(json|lock))$">
+# Proteger apenas arquivos sensíveis
+<FilesMatch "^(\.env|debug\.log|composer\.(json|lock))$">
     Order allow,deny
     Deny from all
 </FilesMatch> 

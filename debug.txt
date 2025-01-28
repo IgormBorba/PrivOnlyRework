@@ -6221,3 +6221,1542 @@ Data: Array
 )
 
 --------------------------------------------------
+[2025-01-28 16:17:17] Received JSON
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 4340
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 1312321321321312312
+            [holderName] => NICOLAS
+            [expirationMonth] => 20
+            [expirationYear] => 3333
+            [cvv] => 143
+        )
+
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:17:17] Creating credit card transaction
+Data: Array
+(
+    [amount] => 4340
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 1312321321321312312
+            [holderName] => NICOLAS
+            [expirationMonth] => 20
+            [expirationYear] => 3333
+            [cvv] => 143
+        )
+
+    [installments] => 1
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Credit Card Payment
+                    [unitPrice] => 4340
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:17:17] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 0
+    [response] => 
+)
+
+--------------------------------------------------
+[2025-01-28 16:23:41] Received JSON
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 8680
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 42342432424324324
+            [holderName] => NICOLAS
+            [expirationMonth] => 32
+            [expirationYear] => 3422
+            [cvv] => 2344
+        )
+
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:23:41] Creating credit card transaction
+Data: Array
+(
+    [amount] => 8680
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 42342432424324324
+            [holderName] => NICOLAS
+            [expirationMonth] => 32
+            [expirationYear] => 3422
+            [cvv] => 2344
+        )
+
+    [installments] => 1
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Credit Card Payment
+                    [unitPrice] => 8680
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:23:41] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 0
+    [response] => 
+)
+
+--------------------------------------------------
+[2025-01-28 16:26:07] Received JSON
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 8680
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 4234324242233232323
+            [holderName] => NICOLAS
+            [expirationMonth] => 6
+            [expirationYear] => 2030
+            [cvv] => 254
+        )
+
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:26:07] Creating credit card transaction
+Data: Array
+(
+    [amount] => 8680
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 4234324242233232323
+            [holderName] => NICOLAS
+            [expirationMonth] => 6
+            [expirationYear] => 2030
+            [cvv] => 254
+        )
+
+    [installments] => 1
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Credit Card Payment
+                    [unitPrice] => 8680
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:26:07] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 0
+    [response] => 
+)
+
+--------------------------------------------------
+[2025-01-28 16:28:20] Received JSON
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 15500
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 4343223424242342342
+            [holderName] => NICOLAS
+            [expirationMonth] => 6
+            [expirationYear] => 2520
+            [cvv] => 342
+        )
+
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:28:20] Creating credit card transaction
+Data: Array
+(
+    [amount] => 15500
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 4343223424242342342
+            [holderName] => NICOLAS
+            [expirationMonth] => 6
+            [expirationYear] => 2520
+            [cvv] => 342
+        )
+
+    [installments] => 1
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Credit Card Payment
+                    [unitPrice] => 15500
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:28:23] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 400
+    [response] => {"status":400,"message":"Transação recusada, consulte o motivo.","data":{"id":"936decec-b77c-4349-bc1b-789167966a52","status":"refused"},"error":{"provider":"PrimefyBag","refusedReason":"The CardNumber field is not a valid credit card number."}}
+)
+
+--------------------------------------------------
+[2025-01-28 16:28:23] API Error
+Data: Transação recusada, consulte o motivo.
+--------------------------------------------------
+[2025-01-28 16:33:26] Received JSON
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 15500
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 4312423443244234234
+            [holderName] => NICOLAS
+            [expirationMonth] => 6
+            [expirationYear] => 30
+            [cvv] => 256
+        )
+
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:33:26] Creating credit card transaction
+Data: Array
+(
+    [amount] => 15500
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 4312423443244234234
+            [holderName] => NICOLAS
+            [expirationMonth] => 6
+            [expirationYear] => 30
+            [cvv] => 256
+        )
+
+    [installments] => 1
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Assinatura Semanal
+                    [unitPrice] => 15500
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+    [recurring] => Array
+        (
+            [type] => WEEKLY
+            [interval] => 1
+            [startDate] => 2025-01-28
+            [endDate] => 2026-01-28
+            [maxCharges] => 52
+            [chargeDay] => 28
+            [retryCount] => 3
+        )
+
+    [metadata] => Array
+        (
+            [source] => website
+            [plan_type] => weekly
+            [customer_id] => 
+            [subscription_start] => 2025-01-28 16:33:26
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:33:26] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 404
+    [response] => {"message":"Cannot POST /v1/transactions","error":"Not Found","statusCode":404}
+)
+
+--------------------------------------------------
+[2025-01-28 16:33:26] API Error
+Data: Cannot POST /v1/transactions
+--------------------------------------------------
+[2025-01-28 16:38:56] Received JSON
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 4340
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 1231231231313123123
+            [holderName] => NICOLAS
+            [expirationMonth] => 6
+            [expirationYear] => 2030
+            [cvv] => 266
+        )
+
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:38:56] Creating credit card transaction
+Data: Array
+(
+    [amount] => 4340
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 1231231231313123123
+            [holderName] => NICOLAS
+            [expirationMonth] => 6
+            [expirationYear] => 2030
+            [cvv] => 266
+        )
+
+    [installments] => 1
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Assinatura Semanal
+                    [unitPrice] => 4340
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+    [recurring] => Array
+        (
+            [type] => WEEKLY
+            [interval] => 1
+            [startDate] => 2025-01-28
+            [endDate] => 2026-01-28
+            [maxCharges] => 52
+            [chargeDay] => 28
+            [retryCount] => 3
+        )
+
+    [metadata] => Array
+        (
+            [source] => website
+            [plan_type] => weekly
+            [customer_id] => 
+            [subscription_start] => 2025-01-28 16:38:56
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:38:56] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 404
+    [response] => {"message":"Cannot POST /v1/transactions","error":"Not Found","statusCode":404}
+)
+
+--------------------------------------------------
+[2025-01-28 16:38:56] API Error
+Data: Cannot POST /v1/transactions
+--------------------------------------------------
+[2025-01-28 16:39:21] Received JSON
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 4340
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 1231231231313123123
+            [holderName] => NICOLAS
+            [expirationMonth] => 6
+            [expirationYear] => 2030
+            [cvv] => 266
+        )
+
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:39:21] Creating credit card transaction
+Data: Array
+(
+    [amount] => 4340
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 1231231231313123123
+            [holderName] => NICOLAS
+            [expirationMonth] => 6
+            [expirationYear] => 2030
+            [cvv] => 266
+        )
+
+    [installments] => 1
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Assinatura Semanal
+                    [unitPrice] => 4340
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+    [recurring] => Array
+        (
+            [type] => WEEKLY
+            [interval] => 1
+            [startDate] => 2025-01-28
+            [endDate] => 2026-01-28
+            [maxCharges] => 52
+            [chargeDay] => 28
+            [retryCount] => 3
+        )
+
+    [metadata] => Array
+        (
+            [source] => website
+            [plan_type] => weekly
+            [customer_id] => 
+            [subscription_start] => 2025-01-28 16:39:21
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:39:21] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 404
+    [response] => {"message":"Cannot POST /v1/transactions","error":"Not Found","statusCode":404}
+)
+
+--------------------------------------------------
+[2025-01-28 16:39:21] API Error
+Data: Cannot POST /v1/transactions
+--------------------------------------------------
+[2025-01-28 16:54:20] Received JSON
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 4340
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 3123123123123123123
+            [holderName] => NICOLAS
+            [expirationMonth] => 6
+            [expirationYear] => 2030
+            [cvv] => 321
+        )
+
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:54:20] Creating credit card transaction
+Data: Array
+(
+    [amount] => 4340
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 3123123123123123123
+            [holderName] => NICOLAS
+            [expirationMonth] => 6
+            [expirationYear] => 2030
+            [cvv] => 321
+        )
+
+    [installments] => 1
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Assinatura Semanal
+                    [unitPrice] => 4340
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+    [recurring] => Array
+        (
+            [type] => WEEKLY
+            [interval] => 1
+            [startDate] => 2025-01-28
+            [endDate] => 2026-01-28
+            [maxCharges] => 52
+            [chargeDay] => 28
+            [retryCount] => 3
+        )
+
+    [metadata] => Array
+        (
+            [source] => website
+            [plan_type] => weekly
+            [customer_id] => 
+            [subscription_start] => 2025-01-28 16:54:20
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:54:20] CURL Verbose Log
+Data: * Host api.fastsoftbrasil.com:443 was resolved.
+* IPv6: 2606:4700:10::6816:3447, 2606:4700:10::ac43:1d1a, 2606:4700:10::6816:3547
+* IPv4: 104.22.53.71, 172.67.29.26, 104.22.52.71
+*   Trying 104.22.53.71:443...
+* Connected to api.fastsoftbrasil.com (104.22.53.71) port 443
+* ALPN: curl offers http/1.1
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384 / X25519 / id-ecPublicKey
+* ALPN: server accepted http/1.1
+* Server certificate:
+*  subject: CN=fastsoftbrasil.com
+*  start date: Dec 19 07:04:05 2024 GMT
+*  expire date: Mar 19 08:02:24 2025 GMT
+*  issuer: C=US; O=Google Trust Services; CN=WE1
+*  SSL certificate verify result: unable to get local issuer certificate (20), continuing anyway.
+*   Certificate level 0: Public key type EC/prime256v1 (256/128 Bits/secBits), signed using ecdsa-with-SHA256
+*   Certificate level 1: Public key type EC/prime256v1 (256/128 Bits/secBits), signed using ecdsa-with-SHA384
+*   Certificate level 2: Public key type EC/secp384r1 (384/192 Bits/secBits), signed using sha256WithRSAEncryption
+* using HTTP/1.x
+> POST /api/user/transactions HTTP/1.1
+Host: api.fastsoftbrasil.com
+Accept-Encoding: deflate, gzip, br, zstd
+Authorization: Basic MmE2N2UzNTgtNTNjNi00OGRmLWE4MjUtZjExYzNmNTAyYTdiOg==
+Content-Type: application/json
+Accept: application/json
+X-API-Version: 2023-08-01
+Content-Length: 646
+
+* old SSL session ID is stale, removing
+< HTTP/1.1 403 Forbidden
+< Date: Tue, 28 Jan 2025 19:54:20 GMT
+< Content-Type: application/json; charset=utf-8
+< Transfer-Encoding: chunked
+< Connection: keep-alive
+< CF-Ray: 909388a568afae93-GRU
+< CF-Cache-Status: DYNAMIC
+< Access-Control-Allow-Origin: *
+< Content-Encoding: br
+< ETag: W/"45-MZJWZc+Y+RUbHpnhz2B2Vipii24"
+< Strict-Transport-Security: max-age=15552000; includeSubDomains
+< Content-Security-Policy: default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests
+< Cross-Origin-Opener-Policy: same-origin
+< Cross-Origin-Resource-Policy: same-origin
+< Origin-Agent-Cluster: ?1
+< Referrer-Policy: no-referrer
+< X-Content-Type-Options: nosniff
+< X-DNS-Prefetch-Control: off
+< X-Download-Options: noopen
+< X-Frame-Options: SAMEORIGIN
+< X-Permitted-Cross-Domain-Policies: none
+< X-XSS-Protection: 0
+< Vary: Accept-Encoding
+< Server: cloudflare
+< 
+* Connection #0 to host api.fastsoftbrasil.com left intact
+
+--------------------------------------------------
+[2025-01-28 16:54:20] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 403
+    [response] => {"message":"Forbidden resource","error":"Forbidden","statusCode":403}
+    [url] => https://api.fastsoftbrasil.com/api/user/transactions
+    [headers] => Array
+        (
+            [0] => Authorization: Basic MmE2N2UzNTgtNTNjNi00OGRmLWE4MjUtZjExYzNmNTAyYTdiOg==
+            [1] => Content-Type: application/json
+            [2] => Accept: application/json
+            [3] => X-API-Version: 2023-08-01
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:54:20] API Error
+Data: Forbidden resource
+--------------------------------------------------
+[2025-01-28 16:57:20] Received JSON
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 4340
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 4078320007470223
+            [holderName] => ERIKA TALAMONTE GONCALVES SOUSA
+            [expirationMonth] => 9
+            [expirationYear] => 2027
+            [cvv] => 903
+        )
+
+    [customer] => Array
+        (
+            [name] => ERIKA TALAMONTE GONCALVES SOUSA
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:57:20] Creating credit card transaction
+Data: Array
+(
+    [amount] => 4340
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 4078320007470223
+            [holderName] => ERIKA TALAMONTE GONCALVES SOUSA
+            [expirationMonth] => 9
+            [expirationYear] => 2027
+            [cvv] => 903
+            [installments] => 1
+        )
+
+    [customer] => Array
+        (
+            [name] => ERIKA TALAMONTE GONCALVES SOUSA
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Assinatura Semanal
+                    [unitPrice] => 4340
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+    [recurring] => Array
+        (
+            [type] => WEEKLY
+            [interval] => 1
+            [startDate] => 2025-01-28
+            [endDate] => 2026-01-28
+            [maxCharges] => 52
+            [chargeDay] => 28
+            [retryCount] => 3
+        )
+
+    [metadata] => Array
+        (
+            [source] => website
+            [plan_type] => weekly
+            [customer_id] => 
+            [subscription_start] => 2025-01-28 16:57:20
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:57:21] CURL Verbose Log
+Data: * Host api.fastsoftbrasil.com:443 was resolved.
+* IPv6: 2606:4700:10::6816:3547, 2606:4700:10::ac43:1d1a, 2606:4700:10::6816:3447
+* IPv4: 172.67.29.26, 104.22.52.71, 104.22.53.71
+*   Trying 172.67.29.26:443...
+* Connected to api.fastsoftbrasil.com (172.67.29.26) port 443
+* ALPN: curl offers http/1.1
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384 / X25519 / id-ecPublicKey
+* ALPN: server accepted http/1.1
+* Server certificate:
+*  subject: CN=fastsoftbrasil.com
+*  start date: Dec 19 07:04:05 2024 GMT
+*  expire date: Mar 19 08:02:24 2025 GMT
+*  issuer: C=US; O=Google Trust Services; CN=WE1
+*  SSL certificate verify result: unable to get local issuer certificate (20), continuing anyway.
+*   Certificate level 0: Public key type EC/prime256v1 (256/128 Bits/secBits), signed using ecdsa-with-SHA256
+*   Certificate level 1: Public key type EC/prime256v1 (256/128 Bits/secBits), signed using ecdsa-with-SHA384
+*   Certificate level 2: Public key type EC/secp384r1 (384/192 Bits/secBits), signed using sha256WithRSAEncryption
+* using HTTP/1.x
+> POST /api/user/credit-card HTTP/1.1
+Host: api.fastsoftbrasil.com
+Accept-Encoding: deflate, gzip, br, zstd
+Authorization: Basic MmE2N2UzNTgtNTNjNi00OGRmLWE4MjUtZjExYzNmNTAyYTdiOg==
+Content-Type: application/json
+Accept: application/json
+X-API-Version: 2023-08-01
+Content-Length: 691
+
+* old SSL session ID is stale, removing
+< HTTP/1.1 404 Not Found
+< Date: Tue, 28 Jan 2025 19:57:21 GMT
+< Content-Type: application/json; charset=utf-8
+< Transfer-Encoding: chunked
+< Connection: keep-alive
+< Content-Security-Policy: default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests
+< Cross-Origin-Opener-Policy: same-origin
+< Cross-Origin-Resource-Policy: same-origin
+< Origin-Agent-Cluster: ?1
+< Referrer-Policy: no-referrer
+< Strict-Transport-Security: max-age=15552000; includeSubDomains
+< X-Content-Type-Options: nosniff
+< X-DNS-Prefetch-Control: off
+< X-Download-Options: noopen
+< X-Frame-Options: SAMEORIGIN
+< X-Permitted-Cross-Domain-Policies: none
+< X-XSS-Protection: 0
+< Access-Control-Allow-Origin: *
+< ETag: W/"54-nGcfDo1cJWDt6slIWHykhagu3s0"
+< cf-cache-status: DYNAMIC
+< Server: cloudflare
+< CF-RAY: 90938d0d5ceeae87-GRU
+< Content-Encoding: br
+< 
+* Connection #0 to host api.fastsoftbrasil.com left intact
+
+--------------------------------------------------
+[2025-01-28 16:57:21] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 404
+    [response] => {"message":"Cannot POST /api/user/credit-card","error":"Not Found","statusCode":404}
+    [url] => https://api.fastsoftbrasil.com/api/user/credit-card
+    [headers] => Array
+        (
+            [0] => Authorization: Basic MmE2N2UzNTgtNTNjNi00OGRmLWE4MjUtZjExYzNmNTAyYTdiOg==
+            [1] => Content-Type: application/json
+            [2] => Accept: application/json
+            [3] => X-API-Version: 2023-08-01
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:57:21] API Error
+Data: Cannot POST /api/user/credit-card
+--------------------------------------------------
+[2025-01-28 16:59:10] Received JSON
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 4340
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 4078320007470223
+            [holderName] => ERIKA TALAMONTE GONCALVES SOUSA
+            [expirationMonth] => 9
+            [expirationYear] => 27
+            [cvv] => 903
+        )
+
+    [customer] => Array
+        (
+            [name] => ERIKA TALAMONTE GONCALVES SOUSA
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 16:59:10] Payment Handler Error
+Data: Array
+(
+    [error] => Invalid expiration date
+)
+
+--------------------------------------------------
+[2025-01-28 17:01:20] Request Details
+Data: Array
+(
+    [method] => POST
+    [headers] => Array
+        (
+            [Host] => localhost:8000
+            [Connection] => keep-alive
+            [Content-Length] => 279
+            [sec-ch-ua-platform] => "Android"
+            [User-Agent] => Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36
+            [sec-ch-ua] => "Not A(Brand";v="8", "Chromium";v="132", "Brave";v="132"
+            [Content-Type] => application/json
+            [sec-ch-ua-mobile] => ?1
+            [Accept] => */*
+            [Sec-GPC] => 1
+            [Origin] => http://localhost:8000
+            [Sec-Fetch-Site] => same-origin
+            [Sec-Fetch-Mode] => cors
+            [Sec-Fetch-Dest] => empty
+            [Referer] => http://localhost:8000/
+            [Accept-Encoding] => gzip, deflate, br, zstd
+            [Accept-Language] => pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7
+            [Cookie] => PHPSESSID=26mfu9h9v5e3f977jt3ugquu4p
+        )
+
+    [input] => {"action":"create_card_payment","amount":4340,"installments":1,"card":{"number":"3112332312313131313","holderName":"NICOLAS","expirationMonth":13,"expirationYear":1313,"cvv":"1132"},"customer":{"name":"Nicolas","email":"customer@example.com","document":{"number":"70174641680"}}}
+    [post] => Array
+        (
+        )
+
+    [session] => Array
+        (
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 17:01:20] Raw Input
+Data: {"action":"create_card_payment","amount":4340,"installments":1,"card":{"number":"3112332312313131313","holderName":"NICOLAS","expirationMonth":13,"expirationYear":1313,"cvv":"1132"},"customer":{"name":"Nicolas","email":"customer@example.com","document":{"number":"70174641680"}}}
+--------------------------------------------------
+[2025-01-28 17:01:20] Decoded Input
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 4340
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 3112332312313131313
+            [holderName] => NICOLAS
+            [expirationMonth] => 13
+            [expirationYear] => 1313
+            [cvv] => 1132
+        )
+
+    [customer] => Array
+        (
+            [name] => Nicolas
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 17:01:20] Processing Action
+Data: create_card_payment
+--------------------------------------------------
+[2025-01-28 17:01:20] Payment Data
+Data: Array
+(
+    [amount] => 4340
+    [installments] => 1
+    [card_data] => present
+    [customer_data] => present
+)
+
+--------------------------------------------------
+[2025-01-28 17:01:20] Payment Handler Error
+Data: Array
+(
+    [error] => Invalid credit card number
+)
+
+--------------------------------------------------
+[2025-01-28 17:01:41] Request Details
+Data: Array
+(
+    [method] => POST
+    [headers] => Array
+        (
+            [Host] => localhost:8000
+            [Connection] => keep-alive
+            [Content-Length] => 322
+            [sec-ch-ua-platform] => "Android"
+            [User-Agent] => Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36
+            [sec-ch-ua] => "Not A(Brand";v="8", "Chromium";v="132", "Brave";v="132"
+            [Content-Type] => application/json
+            [sec-ch-ua-mobile] => ?1
+            [Accept] => */*
+            [Sec-GPC] => 1
+            [Origin] => http://localhost:8000
+            [Sec-Fetch-Site] => same-origin
+            [Sec-Fetch-Mode] => cors
+            [Sec-Fetch-Dest] => empty
+            [Referer] => http://localhost:8000/
+            [Accept-Encoding] => gzip, deflate, br, zstd
+            [Accept-Language] => pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7
+            [Cookie] => PHPSESSID=26mfu9h9v5e3f977jt3ugquu4p
+        )
+
+    [input] => {"action":"create_card_payment","amount":4340,"installments":1,"card":{"number":"4078320007470223","holderName":"ERIKA TALAMONTE GONCALVES SOUSA","expirationMonth":9,"expirationYear":2027,"cvv":"903"},"customer":{"name":"ERIKA TALAMONTE GONCALVES SOUSA","email":"customer@example.com","document":{"number":"70174641680"}}}
+    [post] => Array
+        (
+        )
+
+    [session] => Array
+        (
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 17:01:41] Raw Input
+Data: {"action":"create_card_payment","amount":4340,"installments":1,"card":{"number":"4078320007470223","holderName":"ERIKA TALAMONTE GONCALVES SOUSA","expirationMonth":9,"expirationYear":2027,"cvv":"903"},"customer":{"name":"ERIKA TALAMONTE GONCALVES SOUSA","email":"customer@example.com","document":{"number":"70174641680"}}}
+--------------------------------------------------
+[2025-01-28 17:01:41] Decoded Input
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 4340
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 4078320007470223
+            [holderName] => ERIKA TALAMONTE GONCALVES SOUSA
+            [expirationMonth] => 9
+            [expirationYear] => 2027
+            [cvv] => 903
+        )
+
+    [customer] => Array
+        (
+            [name] => ERIKA TALAMONTE GONCALVES SOUSA
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 17:01:41] Processing Action
+Data: create_card_payment
+--------------------------------------------------
+[2025-01-28 17:01:41] Payment Data
+Data: Array
+(
+    [amount] => 4340
+    [installments] => 1
+    [card_data] => present
+    [customer_data] => present
+)
+
+--------------------------------------------------
+[2025-01-28 17:01:41] Creating credit card transaction
+Data: Array
+(
+    [amount] => 4340
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 4078320007470223
+            [holderName] => ERIKA TALAMONTE GONCALVES SOUSA
+            [expirationMonth] => 9
+            [expirationYear] => 2027
+            [cvv] => 903
+        )
+
+    [installments] => 1
+    [customer] => Array
+        (
+            [name] => ERIKA TALAMONTE GONCALVES SOUSA
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Assinatura Semanal
+                    [unitPrice] => 4340
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+    [recurring] => Array
+        (
+            [type] => WEEKLY
+            [interval] => 1
+            [startDate] => 2025-01-28
+            [endDate] => 2026-01-28
+            [maxCharges] => 52
+            [chargeDay] => 28
+            [retryCount] => 3
+        )
+
+    [metadata] => Array
+        (
+            [source] => website
+            [plan_type] => weekly
+            [customer_id] => 
+            [subscription_start] => 2025-01-28 17:01:41
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 17:01:41] CURL Verbose Log
+Data: * Host api.hypercashbrasil.com.br:443 was resolved.
+* IPv6: 2606:4700:3035::ac43:a0e5, 2606:4700:3037::6815:517f
+* IPv4: 172.67.160.229, 104.21.81.127
+*   Trying 172.67.160.229:443...
+* Connected to api.hypercashbrasil.com.br (172.67.160.229) port 443
+* ALPN: curl offers http/1.1
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384 / X25519 / id-ecPublicKey
+* ALPN: server accepted http/1.1
+* Server certificate:
+*  subject: CN=api.hypercashbrasil.com.br
+*  start date: Jan 14 09:52:53 2025 GMT
+*  expire date: Apr 14 10:52:50 2025 GMT
+*  issuer: C=US; O=Google Trust Services; CN=WE1
+*  SSL certificate verify result: unable to get local issuer certificate (20), continuing anyway.
+*   Certificate level 0: Public key type EC/prime256v1 (256/128 Bits/secBits), signed using ecdsa-with-SHA256
+*   Certificate level 1: Public key type EC/prime256v1 (256/128 Bits/secBits), signed using ecdsa-with-SHA384
+*   Certificate level 2: Public key type EC/secp384r1 (384/192 Bits/secBits), signed using sha256WithRSAEncryption
+* using HTTP/1.x
+> POST /api/user/transactions HTTP/1.1
+Host: api.hypercashbrasil.com.br
+Accept-Encoding: deflate, gzip, br, zstd
+Authorization: Basic MmE2N2UzNTgtNTNjNi00OGRmLWE4MjUtZjExYzNmNTAyYTdiOg==
+Content-Type: application/json
+Accept: application/json
+X-API-Version: 2023-08-01
+Content-Length: 691
+
+* old SSL session ID is stale, removing
+< HTTP/1.1 403 Forbidden
+< Date: Tue, 28 Jan 2025 20:01:41 GMT
+< Content-Type: application/json; charset=utf-8
+< Transfer-Encoding: chunked
+< Connection: keep-alive
+< CF-Ray: 90939368cc9eae8a-GRU
+< CF-Cache-Status: DYNAMIC
+< Access-Control-Allow-Origin: *
+< Content-Encoding: br
+< ETag: W/"45-MZJWZc+Y+RUbHpnhz2B2Vipii24"
+< Strict-Transport-Security: max-age=15552000; includeSubDomains
+< Vary: Accept-Encoding
+< Content-Security-Policy: default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests
+< Cross-Origin-Opener-Policy: same-origin
+< Cross-Origin-Resource-Policy: same-origin
+< Origin-Agent-Cluster: ?1
+< Referrer-Policy: no-referrer
+< X-Content-Type-Options: nosniff
+< X-DNS-Prefetch-Control: off
+< X-Download-Options: noopen
+< X-Frame-Options: SAMEORIGIN
+< X-Permitted-Cross-Domain-Policies: none
+< X-XSS-Protection: 0
+< Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=YggPIoiiOe6U2%2FeMpbyPzliPSleN4832iOAlAqdCxiy0qfyVIDpAuQcKjO3lKJkuBZOjbR2P7uHeIY6W%2BFx%2BZ9tfCirmFD7FJNmT12mPRkU6an301ldBUi4VeFg%2FJhR1DGh7ad7towugN3A9Pw%3D%3D"}],"group":"cf-nel","max_age":604800}
+< NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+< Server: cloudflare
+< alt-svc: h3=":443"; ma=86400
+< server-timing: cfL4;desc="?proto=TCP&rtt=16261&min_rtt=15676&rtt_var=6296&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2853&recv_bytes=1607&delivery_rate=227353&cwnd=252&unsent_bytes=0&cid=10510ba08d10f65c&ts=323&x=0"
+< 
+* Connection #0 to host api.hypercashbrasil.com.br left intact
+
+--------------------------------------------------
+[2025-01-28 17:01:41] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 403
+    [response] => {"message":"Forbidden resource","error":"Forbidden","statusCode":403}
+    [url] => https://api.hypercashbrasil.com.br/api/user/transactions
+    [headers] => Array
+        (
+            [0] => Authorization: Basic MmE2N2UzNTgtNTNjNi00OGRmLWE4MjUtZjExYzNmNTAyYTdiOg==
+            [1] => Content-Type: application/json
+            [2] => Accept: application/json
+            [3] => X-API-Version: 2023-08-01
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 17:01:41] API Error
+Data: Forbidden resource
+--------------------------------------------------
+[2025-01-28 17:05:20] Request Details
+Data: Array
+(
+    [method] => POST
+    [headers] => Array
+        (
+            [Host] => localhost:8000
+            [Connection] => keep-alive
+            [Content-Length] => 274
+            [sec-ch-ua-platform] => "Android"
+            [User-Agent] => Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36
+            [sec-ch-ua] => "Not A(Brand";v="8", "Chromium";v="132", "Brave";v="132"
+            [Content-Type] => application/json
+            [sec-ch-ua-mobile] => ?1
+            [Accept] => */*
+            [Sec-GPC] => 1
+            [Origin] => http://localhost:8000
+            [Sec-Fetch-Site] => same-origin
+            [Sec-Fetch-Mode] => cors
+            [Sec-Fetch-Dest] => empty
+            [Referer] => http://localhost:8000/
+            [Accept-Encoding] => gzip, deflate, br, zstd
+            [Accept-Language] => pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7
+        )
+
+    [input] => {"action":"create_card_payment","amount":4340,"installments":1,"card":{"number":"4532715337909657","holderName":"NICOLAS","expirationMonth":6,"expirationYear":2030,"cvv":"321"},"customer":{"name":"NICOLAS","email":"customer@example.com","document":{"number":"70174641680"}}}
+    [post] => Array
+        (
+        )
+
+    [session] => Array
+        (
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 17:05:20] Raw Input
+Data: {"action":"create_card_payment","amount":4340,"installments":1,"card":{"number":"4532715337909657","holderName":"NICOLAS","expirationMonth":6,"expirationYear":2030,"cvv":"321"},"customer":{"name":"NICOLAS","email":"customer@example.com","document":{"number":"70174641680"}}}
+--------------------------------------------------
+[2025-01-28 17:05:20] Decoded Input
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 4340
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 4532715337909657
+            [holderName] => NICOLAS
+            [expirationMonth] => 6
+            [expirationYear] => 2030
+            [cvv] => 321
+        )
+
+    [customer] => Array
+        (
+            [name] => NICOLAS
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 17:05:20] Processing Action
+Data: create_card_payment
+--------------------------------------------------
+[2025-01-28 17:05:20] Payment Data
+Data: Array
+(
+    [amount] => 4340
+    [installments] => 1
+    [card_data] => present
+    [customer_data] => present
+)
+
+--------------------------------------------------
+[2025-01-28 17:05:20] Payment Handler Error
+Data: Array
+(
+    [error] => Invalid credit card number
+)
+
+--------------------------------------------------
+[2025-01-28 17:05:38] Request Details
+Data: Array
+(
+    [method] => POST
+    [headers] => Array
+        (
+            [Host] => localhost:8000
+            [Connection] => keep-alive
+            [Content-Length] => 322
+            [sec-ch-ua-platform] => "Android"
+            [User-Agent] => Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36
+            [sec-ch-ua] => "Not A(Brand";v="8", "Chromium";v="132", "Brave";v="132"
+            [Content-Type] => application/json
+            [sec-ch-ua-mobile] => ?1
+            [Accept] => */*
+            [Sec-GPC] => 1
+            [Origin] => http://localhost:8000
+            [Sec-Fetch-Site] => same-origin
+            [Sec-Fetch-Mode] => cors
+            [Sec-Fetch-Dest] => empty
+            [Referer] => http://localhost:8000/
+            [Accept-Encoding] => gzip, deflate, br, zstd
+            [Accept-Language] => pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7
+            [Cookie] => PHPSESSID=jqnv28ogcboqjlu2l7uvga14gc
+        )
+
+    [input] => {"action":"create_card_payment","amount":4340,"installments":1,"card":{"number":"4078320007470223","holderName":"ERIKA TALAMONTE GONCALVES SOUSA","expirationMonth":9,"expirationYear":2027,"cvv":"903"},"customer":{"name":"ERIKA TALAMONTE GONCALVES SOUSA","email":"customer@example.com","document":{"number":"70174641680"}}}
+    [post] => Array
+        (
+        )
+
+    [session] => Array
+        (
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 17:05:38] Raw Input
+Data: {"action":"create_card_payment","amount":4340,"installments":1,"card":{"number":"4078320007470223","holderName":"ERIKA TALAMONTE GONCALVES SOUSA","expirationMonth":9,"expirationYear":2027,"cvv":"903"},"customer":{"name":"ERIKA TALAMONTE GONCALVES SOUSA","email":"customer@example.com","document":{"number":"70174641680"}}}
+--------------------------------------------------
+[2025-01-28 17:05:38] Decoded Input
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 4340
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 4078320007470223
+            [holderName] => ERIKA TALAMONTE GONCALVES SOUSA
+            [expirationMonth] => 9
+            [expirationYear] => 2027
+            [cvv] => 903
+        )
+
+    [customer] => Array
+        (
+            [name] => ERIKA TALAMONTE GONCALVES SOUSA
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 17:05:38] Processing Action
+Data: create_card_payment
+--------------------------------------------------
+[2025-01-28 17:05:38] Payment Data
+Data: Array
+(
+    [amount] => 4340
+    [installments] => 1
+    [card_data] => present
+    [customer_data] => present
+)
+
+--------------------------------------------------
+[2025-01-28 17:05:38] Creating credit card transaction
+Data: Array
+(
+    [amount] => 4340
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 4078320007470223
+            [holderName] => ERIKA TALAMONTE GONCALVES SOUSA
+            [expirationMonth] => 9
+            [expirationYear] => 2027
+            [cvv] => 903
+        )
+
+    [installments] => 1
+    [customer] => Array
+        (
+            [name] => ERIKA TALAMONTE GONCALVES SOUSA
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Credit Card Payment
+                    [unitPrice] => 4340
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-28 17:05:46] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 400
+    [response] => {"status":400,"message":"Transação recusada, consulte o motivo.","data":{"id":"c57dae48-704f-448a-af17-05ad1dc5f4d7","status":"refused"},"error":{"provider":"PrimefyBag","refusedReason":"declined payment classified as high risk by the bank issuer"}}
+)
+
+--------------------------------------------------

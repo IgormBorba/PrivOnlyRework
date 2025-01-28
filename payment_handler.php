@@ -12,12 +12,41 @@ if (file_exists(__DIR__ . '/.env')) {
 }
 
 define('FASTSOFT_SECRET_KEY', $_ENV['FASTSOFT_SECRET_KEY'] ?? '');
-define('FASTSOFT_API_URL', $_ENV['FASTSOFT_API_URL'] ?? 'https://api.hypercashbrasil.com.br/api/user/transactions');
+define('FASTSOFT_API_URL', 'https://api.hypercashbrasil.com.br/api/user/transactions');
 define('LOG_FILE', 'debug.txt');
 define('LEADS_FILE', __DIR__ . '/data/leads.json');
 define('TRANSACTIONS_FILE', __DIR__ . '/data/transactions.json');
 define('APPROVED_LOG', __DIR__ . '/logs/approved.log');
 define('REJECTED_LOG', __DIR__ . '/logs/rejected.log');
+
+// Garante que os diretórios existam
+if (!file_exists(__DIR__ . '/data')) {
+    mkdir(__DIR__ . '/data', 0777, true);
+}
+if (!file_exists(__DIR__ . '/logs')) {
+    mkdir(__DIR__ . '/logs', 0777, true);
+}
+
+// No início do arquivo, após session_start()
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+
+// Log de todas as informações da requisição
+writeLog("Request Details", [
+    'method' => $_SERVER['REQUEST_METHOD'],
+    'headers' => getallheaders(),
+    'input' => file_get_contents('php://input'),
+    'post' => $_POST,
+    'session' => $_SESSION
+]);
+
+// Se for OPTIONS, retorna 200 OK
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
 
 /**
  * Helper para logar
@@ -32,85 +61,171 @@ function writeLog($message, $data = null) {
     file_put_contents(LOG_FILE, $logMessage, FILE_APPEND);
 }
 
-/**
- * Ler JSON do php://input
- */
+// Ler JSON do php://input
 $inputRaw = file_get_contents('php://input');
+writeLog("Raw Input", $inputRaw);
+
 $inputJson = json_decode($inputRaw, true);
+writeLog("Decoded Input", $inputJson);
 
 if (!is_array($inputJson)) {
     http_response_code(400);
     echo json_encode([
         'success' => false,
-        'error' => 'Invalid JSON input'
+        'error' => 'Invalid JSON input',
+        'debug' => [
+            'raw_input' => $inputRaw,
+            'json_error' => json_last_error_msg()
+        ]
     ]);
     exit;
 }
 
-writeLog("Received JSON", $inputJson);
-
 try {
     // Exemplo: Esperamos um "action" ou definimos default
     $action = $inputJson['action'] ?? 'create_card_payment';
+    writeLog("Processing Action", $action);
     
     switch ($action) {
-
         case 'create_card_payment':
-            // Montamos um payload para a API da FastSoft 
-            // Definindo CARTÃO => 'paymentMethod' => 'CREDIT_CARD'
-            // A API antiga usava self::PAYMENT_METHOD = 'PIX'. Precisamos trocar.
+            // Log dos dados recebidos
+            writeLog("Payment Data", [
+                'amount' => $inputJson['amount'] ?? null,
+                'installments' => $inputJson['installments'] ?? null,
+                'card_data' => isset($inputJson['card']) ? 'present' : 'missing',
+                'customer_data' => isset($inputJson['customer']) ? 'present' : 'missing'
+            ]);
 
-            // Exemplo de parse
-            $amount = (int)($inputJson['amount'] ?? 0);    // valor em centavos
-            $installments = (int)($inputJson['installments'] ?? 1);
-
-            $cardData = $inputJson['card'] ?? [];
-            $customerData = $inputJson['customer'] ?? [];
+            // Validações mais detalhadas
+            $errors = [];
             
-            if ($amount <= 0) {
-                throw new Exception("Invalid amount");
+            if (!isset($inputJson['amount']) || $inputJson['amount'] <= 0) {
+                $errors[] = "Invalid amount";
             }
-            if (empty($cardData['number']) || empty($cardData['holderName']) || empty($cardData['expirationMonth']) || empty($cardData['expirationYear']) || empty($cardData['cvv'])) {
-                throw new Exception("Incomplete card data");
+            
+            if (!isset($inputJson['card'])) {
+                $errors[] = "Card data is missing";
+            } else {
+                if (empty($inputJson['card']['number'])) $errors[] = "Card number is missing";
+                if (empty($inputJson['card']['holderName'])) $errors[] = "Card holder name is missing";
+                if (empty($inputJson['card']['expirationMonth'])) $errors[] = "Card expiration month is missing";
+                if (empty($inputJson['card']['expirationYear'])) $errors[] = "Card expiration year is missing";
+                if (empty($inputJson['card']['cvv'])) $errors[] = "Card CVV is missing";
             }
-            if (empty($customerData['document']['number'])) {
-                throw new Exception("Missing customer document");
+            
+            if (!isset($inputJson['customer'])) {
+                $errors[] = "Customer data is missing";
+            } else {
+                if (empty($inputJson['customer']['document']['number'])) {
+                    $errors[] = "Customer document number is missing";
+                }
+            }
+            
+            if (!empty($errors)) {
+                throw new Exception("Validation errors: " . implode(", ", $errors));
+            }
+
+            // Função para validar cartão de crédito
+            function validateCreditCard($number) {
+                // Remove espaços e traços
+                $number = preg_replace('/\D/', '', $number);
+                
+                // Verifica o comprimento (13-19 dígitos)
+                if (strlen($number) < 13 || strlen($number) > 19) {
+                    return false;
+                }
+                
+                // Implementa o algoritmo de Luhn
+                $sum = 0;
+                $length = strlen($number);
+                $parity = $length % 2;
+                
+                for ($i = $length - 1; $i >= 0; $i--) {
+                    $digit = (int)$number[$i];
+                    if ($i % 2 == $parity) {
+                        $digit *= 2;
+                        if ($digit > 9) {
+                            $digit -= 9;
+                        }
+                    }
+                    $sum += $digit;
+                }
+                
+                return ($sum % 10) == 0;
+            }
+
+            // Validações do cartão
+            if (!validateCreditCard($inputJson['card']['number'])) {
+                throw new Exception("Invalid credit card number");
+            }
+            
+            // Validação da data de expiração
+            $currentYear = (int)date('Y');
+            $currentMonth = (int)date('m');
+            $expYear = (int)$inputJson['card']['expirationYear'];
+            $expMonth = (int)$inputJson['card']['expirationMonth'];
+            
+            if ($expYear < $currentYear || 
+                ($expYear == $currentYear && $expMonth < $currentMonth) ||
+                $expMonth < 1 || 
+                $expMonth > 12) {
+                throw new Exception("Invalid expiration date");
+            }
+            
+            // Validação do CVV (3-4 dígitos)
+            if (!preg_match('/^\d{3,4}$/', $inputJson['card']['cvv'])) {
+                throw new Exception("Invalid CVV");
             }
 
             // Montar payload p/ POST
             $payload = [
-                'amount' => $amount, // total em centavos
+                'amount' => $inputJson['amount'],
                 'currency' => 'BRL',
                 'paymentMethod' => 'CREDIT_CARD',
                 'card' => [
-                    'number' => preg_replace('/\D/', '', $cardData['number']),
-                    'holderName' => strtoupper($cardData['holderName']),
-                    'expirationMonth' => (int)$cardData['expirationMonth'],
-                    'expirationYear' => (int)$cardData['expirationYear'],
-                    'cvv' => $cardData['cvv'],
+                    'number' => preg_replace('/\D/', '', $inputJson['card']['number']),
+                    'holderName' => strtoupper($inputJson['card']['holderName']),
+                    'expirationMonth' => (int)$inputJson['card']['expirationMonth'],
+                    'expirationYear' => (int)$inputJson['card']['expirationYear'],
+                    'cvv' => $inputJson['card']['cvv']
                 ],
-                'installments' => $installments,
+                'installments' => $inputJson['installments'],
                 'customer' => [
-                    'name' => $customerData['name'] ?? 'NoName',
-                    'email' => $customerData['email'] ?? 'noemail@domain.com',
+                    'name' => $inputJson['customer']['name'] ?? 'NoName',
+                    'email' => $inputJson['customer']['email'] ?? 'noemail@domain.com',
                     'document' => [
                         'type' => 'CPF',
-                        'number' => preg_replace('/\D/', '', $customerData['document']['number'] ?? '')
-                    ],
+                        'number' => preg_replace('/\D/', '', $inputJson['customer']['document']['number'] ?? '')
+                    ]
                 ],
                 'items' => [
                     [
-                        'title' => 'Credit Card Payment',
-                        'unitPrice' => $amount,
+                        'title' => 'Assinatura Semanal',
+                        'unitPrice' => $inputJson['amount'],
                         'quantity' => 1,
                         'tangible' => false
                     ]
+                ],
+                'recurring' => [
+                    'type' => 'WEEKLY',
+                    'interval' => $_ENV['RECURRING_INTERVAL'] ?? 7, // Intervalo em dias, default 7
+                    'startDate' => date('Y-m-d'),
+                    'endDate' => date('Y-m-d', strtotime('+1 year')),
+                    'maxCharges' => 52, // 52 semanas
+                    'chargeDay' => (int)date('d'),
+                    'retryCount' => 3
+                ],
+                'metadata' => [
+                    'source' => 'website',
+                    'plan_type' => 'weekly',
+                    'customer_id' => $_SESSION['user_id'] ?? null,
+                    'subscription_start' => date('Y-m-d H:i:s')
                 ]
             ];
 
             // (Opcional) if you have phone
-            if (!empty($customerData['phone'])) {
-                $payload['customer']['phone'] = $customerData['phone'];
+            if (!empty($inputJson['customer']['phone'])) {
+                $payload['customer']['phone'] = $inputJson['customer']['phone'];
             }
 
             $responseData = fastsoftCreateTransaction($payload);
@@ -203,45 +318,10 @@ function fastsoftCreateTransaction(array $payload): array
     // Você pode salvar em $_SESSION ou BD
     $_SESSION['transaction_id'] = $transactionId;
     $_SESSION['transaction_status'] = $status;
-
-    if ($httpCode === 200 && isset($jsonResp['id'])) {
-        // Salvar lead
-        $leadId = saveLead($payload);
-        
-        // Salvar transação
-        $transactionId = saveTransaction(
-            $leadId,
-            $jsonResp['status'],
-            $payload['amount'],
-            $jsonResp['id']
-        );
-        
-        // Log de aprovação
-        saveTransactionLog(
-            $payload['card']['number'],
-            'approved',
-            "Transaction ID: {$jsonResp['id']}"
-        );
-        
-        return [
-            'success' => true,
-            'data' => array_merge($jsonResp, [
-                'lead_id' => $leadId,
-                'transaction_id' => $transactionId
-            ])
-        ];
-    }
-    
-    // Log de rejeição em caso de erro
-    saveTransactionLog(
-        $payload['card']['number'],
-        'rejected',
-        $jsonResp['message'] ?? 'Unknown error'
-    );
     
     return [
-        'success' => false,
-        'error' => $jsonResp['message'] ?? 'Payment error'
+        'success' => true,
+        'data' => $jsonResp
     ];
 }
 
@@ -266,19 +346,34 @@ function saveLead($data) {
         $leads = json_decode(file_get_contents(LEADS_FILE), true) ?? [];
     }
     
-    $leadId = count($leads) + 1;
+    $leadId = uniqid('lead_');
     $lead = [
         'id' => $leadId,
+        'created_at' => date('Y-m-d H:i:s'),
+        'customer' => [
         'name' => $data['customer']['name'],
         'email' => $data['customer']['email'],
-        'card_last4' => substr($data['card']['number'], -4),
-        'subscription_status' => 'active',
-        'next_charge' => date('Y-m-d', strtotime('+7 days')),
-        'created_at' => date('Y-m-d H:i:s')
+            'document' => $data['customer']['document'],
+            'phone' => $data['customer']['phone'] ?? null
+        ],
+        'subscription' => [
+            'amount' => $data['amount'],
+            'interval' => $data['recurring']['interval'],
+            'start_date' => $data['recurring']['startDate'],
+            'end_date' => $data['recurring']['endDate'],
+            'max_charges' => $data['recurring']['maxCharges']
+        ],
+        'payment' => [
+            'method' => $data['paymentMethod'],
+            'card_last4' => substr(preg_replace('/\D/', '', $data['card']['number']), -4),
+            'card_holder' => $data['card']['holderName']
+        ],
+        'status' => 'pending'
     ];
     
-    $leads[] = $lead;
+    $leads[$leadId] = $lead;
     file_put_contents(LEADS_FILE, json_encode($leads, JSON_PRETTY_PRINT));
+    
     return $leadId;
 }
 
@@ -290,15 +385,32 @@ function saveTransaction($leadId, $status, $amount, $transactionId) {
     }
     
     $transaction = [
-        'id' => count($transactions) + 1,
+        'id' => $transactionId,
         'lead_id' => $leadId,
-        'status' => $status,
+        'created_at' => date('Y-m-d H:i:s'),
         'amount' => $amount,
-        'transaction_id' => $transactionId,
-        'created_at' => date('Y-m-d H:i:s')
+        'status' => $status
     ];
     
-    $transactions[] = $transaction;
+    $transactions[$transactionId] = $transaction;
     file_put_contents(TRANSACTIONS_FILE, json_encode($transactions, JSON_PRETTY_PRINT));
-    return $transaction['id'];
+    
+    // Atualiza o status do lead
+    updateLeadStatus($leadId, $status);
+    
+    return $transactionId;
+}
+
+// Helper para atualizar status do lead
+function updateLeadStatus($leadId, $status) {
+    $leads = [];
+    if (file_exists(LEADS_FILE)) {
+        $leads = json_decode(file_get_contents(LEADS_FILE), true) ?? [];
+    }
+    
+    if (isset($leads[$leadId])) {
+        $leads[$leadId]['status'] = $status;
+        $leads[$leadId]['updated_at'] = date('Y-m-d H:i:s');
+        file_put_contents(LEADS_FILE, json_encode($leads, JSON_PRETTY_PRINT));
+    }
 }
