@@ -31,7 +31,7 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
               <?php echo htmlspecialchars($profile['model_name']); ?> 🌶️ 🏆
               <i class="bi bi-patch-check-fill verified-icon"></i>
             </div>
-            <div class="banner-status">Disponível agora</div>
+            <div class="banner-status">Available now</div>
             <div class="banner-sections">
               <div class="banner-section-item">
                 <i class="bi bi-image"></i>
@@ -67,7 +67,7 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
     <div class="handle-container">
     <div class="handle"><?php echo htmlspecialchars($profile['username']); ?></div>
       <div class="status-separator"></div>
-      <div class="status-text">Disponível agora</div>
+      <div class="status-text">Available now</div>
     </div>
 
     <!-- Bio -->
@@ -89,8 +89,8 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
     
     <div class="read-more"
          onclick="document.querySelector('.bio').classList.toggle('expanded'); 
-                  this.textContent = (this.textContent === 'Mais informações' ? 'Menos informações' : 'Mais informações')">
-      Mais informações
+                  this.textContent = (this.textContent === 'More information' ? 'Less information' : 'More information')">
+      More information
     </div>
 
     <!-- Social Media Buttons -->
@@ -114,14 +114,14 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
 
     <!-- Subscription Section -->
     <div class="subscription-section" id="subscriptionSection">
-      <div class="section-title">Assinatura</div>
+      <div class="section-title">Subscription</div>
       <div class="offer-join">
         <div class="offer-join__content">
           <div class="offer-join__details">
-            Oferta limitada: 90% de desconto nos primeiros <?php echo htmlspecialchars($profile['subscription']['promo_days']); ?> dias!
+            Limited offer: 90% off first <?php echo htmlspecialchars($profile['subscription']['promo_days']); ?> days!
           </div>
           <div class="offer-join__left-time">
-            Oferta termina <?php echo htmlspecialchars($profile['subscription']['promo_end_date']); ?>
+            Offer ends <?php echo htmlspecialchars($profile['subscription']['promo_end_date']); ?>
           </div>
         </div>
 
@@ -135,12 +135,12 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
         <div class="offer-join__btn">
       <div class="subscription-button" data-plan="monthly">
             <div class="btn-text-wrap">
-              <span class="btn-text">Assinar</span>
-              <span class="btn-text__small">$<?php echo htmlspecialchars($profile['subscription']['promo_price']); ?> por <?php echo htmlspecialchars($profile['subscription']['promo_days']); ?> dias</span>
+              <span class="btn-text">Subscribe</span>
+              <span class="btn-text__small">$<?php echo htmlspecialchars($profile['subscription']['promo_price']); ?> for <?php echo htmlspecialchars($profile['subscription']['promo_days']); ?> days</span>
             </div>
           </div>
           <div class="subscription-price">
-            Preço Normal $<?php echo htmlspecialchars($profile['subscription']['regular_price']); ?> /mês
+            Regular Price $<?php echo htmlspecialchars($profile['subscription']['regular_price']); ?> /month
           </div>
         </div>
       </div>
@@ -149,7 +149,7 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
     <!-- Subscription Packages -->
     <div class="bundles-group">
       <button type="button" class="section-title collapsible" onclick="togglePackages(this)">
-        Pacotes de assinatura
+        Subscription Packages
         <span class="section-title__arrow">
           <i class="bi bi-chevron-down"></i>
         </span>
@@ -158,24 +158,24 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
       <div class="tab-container">
         <button type="button" class="promotion-button">
           <div class="btn-text-wrap">
-            <span class="btn-text">Assinar</span>
-            <span class="btn-text__small">3 meses (<?php echo htmlspecialchars($profile['bundles']['3months']['discount']); ?>)</span>
+            <span class="btn-text">Subscribe</span>
+            <span class="btn-text__small">3 months (<?php echo htmlspecialchars($profile['bundles']['3months']['discount']); ?>)</span>
           </div>
           <span class="btn-price">$<?php echo htmlspecialchars($profile['bundles']['3months']['price']); ?> total</span>
         </button>
 
         <button type="button" class="promotion-button">
           <div class="btn-text-wrap">
-            <span class="btn-text">Assinar</span>
-            <span class="btn-text__small">6 meses (<?php echo htmlspecialchars($profile['bundles']['6months']['discount']); ?>)</span>
+            <span class="btn-text">Subscribe</span>
+            <span class="btn-text__small">6 months (<?php echo htmlspecialchars($profile['bundles']['6months']['discount']); ?>)</span>
           </div>
           <span class="btn-price">$<?php echo htmlspecialchars($profile['bundles']['6months']['price']); ?> total</span>
         </button>
 
         <button type="button" class="promotion-button">
           <div class="btn-text-wrap">
-            <span class="btn-text">Assinar</span>
-            <span class="btn-text__small">12 meses (<?php echo htmlspecialchars($profile['bundles']['12months']['discount']); ?>)</span>
+            <span class="btn-text">Subscribe</span>
+            <span class="btn-text__small">12 months (<?php echo htmlspecialchars($profile['bundles']['12months']['discount']); ?>)</span>
           </div>
           <span class="btn-price">$<?php echo htmlspecialchars($profile['bundles']['12months']['price']); ?> total</span>
         </button>
@@ -187,12 +187,12 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
       <ul class="posts-tabs__list">
         <li class="posts-tabs__item">
           <a href="#posts" class="posts-tabs__link active">
-            <span class="posts-tabs__text">1974 postagens</span>
+            <span class="posts-tabs__text">1974 POSTS</span>
           </a>
         </li>
         <li class="posts-tabs__item">
           <a href="#media" class="posts-tabs__link">
-            <span class="posts-tabs__text">2093 MÍDIA</span>
+            <span class="posts-tabs__text">2093 MEDIA</span>
           </a>
         </li>
       </ul>
@@ -223,7 +223,7 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
       <div class="locked-content__cta">
         <button type="button" class="subscribe-btn" onclick="showSubscribeModal()">
           <span class="subscribe-btn__text">
-            Inscreve-te para ver as publicações do utilizador
+            Subscribe to see user posts
           </span>
         </button>
       </div>
@@ -328,14 +328,14 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
         <button type="button" class="modal-back-btn" onclick="closeLoginModal()">
           <i class="bi bi-arrow-left"></i>
         </button>
-        <h4 class="modal-title">Login para se inscrever</h4>
+        <h4 class="modal-title" id="modalTitle">Login to Subscribe</h4>
       </div>
 
       <div class="modal-body">
         <!-- Left Side - User Info -->
         <div class="modal-left">
           <div class="modal-user-card">
-            <img src="/img/banner2.png" alt="Cover" class="modal-user-cover">
+            <img src="<?php echo !empty($profile['banner']) ? $profile['banner'] : '/img/banner2.png'; ?>" alt="Cover" class="modal-user-cover">
             <div class="modal-user-info">
               <img src="<?php echo !empty($profile['photo']) ? $profile['photo'] : '/img/perfil.png'; ?>" alt="Profile" class="modal-user-avatar">
               <div class="modal-user-details">
@@ -350,42 +350,43 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
 
           <div class="modal-benefits">
             <div class="modal-benefits-title">
-              Subscreva e obtenha estes benefícios:
+              Subscribe and get these benefits:
             </div>
             <div class="modal-benefits-list">
               <div class="modal-benefit-item">
                 <i class="bi bi-check-lg modal-benefit-icon"></i>
-                <span class="modal-benefit-text">Acesso total ao conteúdo deste usuário</span>
+                <span class="modal-benefit-text">Full access to this user's content</span>
               </div>
               <div class="modal-benefit-item">
                 <i class="bi bi-check-lg modal-benefit-icon"></i>
-                <span class="modal-benefit-text">Mensagem direta com este usuário</span>
+                <span class="modal-benefit-text">Direct message with this user</span>
               </div>
               <div class="modal-benefit-item">
                 <i class="bi bi-check-lg modal-benefit-icon"></i>
-                <span class="modal-benefit-text">Cancele sua assinatura a qualquer momento</span>
+                <span class="modal-benefit-text">Cancel your subscription anytime</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Right Side - Login Form -->
+        <!-- Right Side - Login/Register Forms -->
         <div class="modal-right">
-      <div class="modal-logo">
-        <img src="/img/logoonly.png" alt="Logo">
+          <div class="modal-logo">
+            <img src="/img/logoonly.png" alt="Logo">
           </div>
 
-          <form class="login-form" onsubmit="handleLogin(event)">
-            <h3>Faça login</h3>
+          <!-- Login Form -->
+          <form class="login-form" id="loginForm" onsubmit="handleLogin(event)" style="display: block;">
+            <h3>Login</h3>
             
             <div class="form-group">
               <input type="email" class="form-input" id="loginEmail" required placeholder=" ">
-              <label class="form-label">E-mail</label>
+              <label class="form-label">Email</label>
             </div>
 
             <div class="form-group">
               <input type="password" class="form-input" id="loginPassword" required placeholder=" ">
-              <label class="form-label">Senha</label>
+              <label class="form-label">Password</label>
             </div>
 
             <button type="submit" class="login-btn" id="loginButton">
@@ -393,31 +394,61 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
             </button>
 
             <div class="login-terms">
-              Ao fazer login e usar o OnlyFans, você concorda com nossos 
-              <a href="/terms">Termos de Serviço</a> e 
-              <a href="/privacy">Política de Privacidade</a> 
-              e confirma que tem pelo menos 18 anos de idade.
+              By logging in and using OnlyFans, you agree to our 
+              <a href="/terms">Terms of Service</a> and 
+              <a href="/privacy">Privacy Policy</a> 
+              and confirm that you are at least 18 years old.
             </div>
 
             <div class="login-links">
-              <span class="login-link">Esqueceu a senha?</span>
-              <span class="login-link">Inscreva-se no OnlyFans</span>
+              <span class="login-link">Forgot Password?</span>
+              <span class="login-link" onclick="toggleForms()">Create new account</span>
             </div>
 
             <a href="/twitter/auth" class="social-login-btn twitter">
               <img src="https://static2.onlyfans.com/static/prod/f/202501271707-9105fd1645/img/x.svg" alt="X">
-              Faça login com X
+              Login with X
             </a>
+          </form>
 
-            <a href="/auth/google" class="social-login-btn google">
-              <img src="https://static2.onlyfans.com/static/prod/f/202501271707-9105fd1645/img/logo-google.svg" alt="Google">
-              Iniciar sessão com o google
-            </a>
+          <!-- Register Form -->
+          <form class="login-form" id="registerForm" onsubmit="handleRegister(event)" style="display: none;">
+            <h3>Create Account</h3>
+            
+            <div class="form-group">
+              <input type="text" class="form-input" id="registerName" required placeholder=" ">
+              <label class="form-label">Full Name</label>
+            </div>
 
-            <button type="button" class="social-login-btn fingerprint">
-              <i class="bi bi-fingerprint"></i>
-              Login sem senha
+            <div class="form-group">
+              <input type="text" class="form-input" id="registerUsername" required placeholder=" ">
+              <label class="form-label">Username</label>
+            </div>
+
+            <div class="form-group">
+              <input type="email" class="form-input" id="registerEmail" required placeholder=" ">
+              <label class="form-label">Email</label>
+            </div>
+
+            <div class="form-group">
+              <input type="password" class="form-input" id="registerPassword" required placeholder=" ">
+              <label class="form-label">Password</label>
+            </div>
+
+            <button type="submit" class="login-btn" id="registerButton">
+              Create Account
             </button>
+
+            <div class="login-terms">
+              By creating an account, you agree to our 
+              <a href="/terms">Terms of Service</a> and 
+              <a href="/privacy">Privacy Policy</a> 
+              and confirm that you are at least 18 years old.
+            </div>
+
+            <div class="login-links">
+              <span class="login-link" onclick="toggleForms()">Already have an account? Login</span>
+            </div>
           </form>
         </div>
       </div>
@@ -431,14 +462,14 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
         <button type="button" class="modal-back-btn" onclick="closeSubscribeModal()">
           <i class="bi bi-arrow-left"></i>
         </button>
-        <h4 class="modal-title">Assinar conteúdo</h4>
+        <h4 class="modal-title">Subscribe to Content</h4>
       </div>
 
       <div class="modal-body">
         <!-- Left Side - User Info -->
         <div class="modal-left">
           <div class="modal-user-card">
-            <img src="/img/banner2.png" alt="Cover" class="modal-user-cover">
+            <img src="<?php echo !empty($profile['banner']) ? $profile['banner'] : '/img/banner2.png'; ?>" alt="Cover" class="modal-user-cover">
             <div class="modal-user-info">
               <img src="<?php echo !empty($profile['photo']) ? $profile['photo'] : '/img/perfil.png'; ?>" alt="Profile" class="modal-user-avatar">
               <div class="modal-user-details">
@@ -453,20 +484,20 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
 
           <div class="modal-benefits">
             <div class="modal-benefits-title">
-              Subscreva e obtenha estes benefícios:
+              Subscribe and get these benefits:
             </div>
             <div class="modal-benefits-list">
               <div class="modal-benefit-item">
                 <i class="bi bi-check-lg modal-benefit-icon"></i>
-                <span class="modal-benefit-text">Acesso total ao conteúdo deste usuário</span>
+                <span class="modal-benefit-text">Full access to this user's content</span>
               </div>
               <div class="modal-benefit-item">
                 <i class="bi bi-check-lg modal-benefit-icon"></i>
-                <span class="modal-benefit-text">Mensagem direta com este usuário</span>
+                <span class="modal-benefit-text">Direct message with this user</span>
               </div>
               <div class="modal-benefit-item">
                 <i class="bi bi-check-lg modal-benefit-icon"></i>
-                <span class="modal-benefit-text">Cancele sua assinatura a qualquer momento</span>
+                <span class="modal-benefit-text">Cancel your subscription anytime</span>
               </div>
             </div>
           </div>
@@ -540,7 +571,7 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="g-btn m-flat" onclick="closeSubscribeModal()">Fechar</button>
+        <button type="button" class="g-btn m-flat" onclick="closeSubscribeModal()">Close</button>
       </div>
     </div>
   </div>
@@ -565,9 +596,9 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
           // Atualiza o plano selecionado
           if (this.classList.contains('promotion-button')) {
             const planText = this.querySelector('.btn-text__small').textContent;
-            if (planText.includes('3 meses')) currentPlan = '3months';
-            else if (planText.includes('6 meses')) currentPlan = '6months';
-            else if (planText.includes('12 meses')) currentPlan = '12months';
+            if (planText.includes('3 months')) currentPlan = '3months';
+            else if (planText.includes('6 months')) currentPlan = '6months';
+            else if (planText.includes('12 months')) currentPlan = '12months';
             else currentPlan = 'monthly';
           } else {
             currentPlan = this.dataset.plan || 'monthly';
@@ -651,13 +682,13 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
       const password = document.getElementById('loginPassword').value;
       
       if (!email || !password) {
-        alert('Por favor, preencha todos os campos.');
+        alert('Please fill in all fields.');
         return;
       }
 
       const button = document.getElementById('loginButton');
       button.disabled = true;
-      button.innerHTML = 'Processando...';
+      button.innerHTML = 'Processing...';
 
       // Simula autenticação bem-sucedida
       setTimeout(() => {
@@ -891,6 +922,58 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
         document.getElementById('modalPaymentError').style.display = 'block';
         document.getElementById('modalPaymentError').textContent = 'Error processing payment: ' + err.message;
       });
+    }
+
+    function toggleForms() {
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const modalTitle = document.getElementById('modalTitle');
+
+      if (loginForm.style.display === 'block') {
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+        modalTitle.textContent = 'Create Account';
+      } else {
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+        modalTitle.textContent = 'Login to Subscribe';
+      }
+    }
+
+    function handleRegister(event) {
+      event.preventDefault();
+      const name = document.getElementById('registerName').value;
+      const username = document.getElementById('registerUsername').value;
+      const email = document.getElementById('registerEmail').value;
+      const password = document.getElementById('registerPassword').value;
+      
+      if (!name || !username || !email || !password) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      const button = document.getElementById('registerButton');
+      button.disabled = true;
+      button.innerHTML = 'Processing...';
+
+      // Simula registro bem-sucedido
+      setTimeout(() => {
+        // Atualiza estado de login
+        userLoginData = { 
+          email: email,
+          name: name,
+          username: username
+        };
+        
+        // Fecha modal de login
+        closeLoginModal();
+        
+        // Mostra modal de pagamento
+        showSubscribeModal();
+        
+        button.disabled = false;
+        button.innerHTML = 'Create Account';
+      }, 1000);
     }
   </script>
 </body>

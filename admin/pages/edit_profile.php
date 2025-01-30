@@ -1,4 +1,16 @@
 <?php
+// Adicione no início do arquivo, após o PHP tag
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// No início do arquivo
+if (!file_exists($_SERVER['DOCUMENT_ROOT'] . '/img/banners/')) {
+    mkdir($_SERVER['DOCUMENT_ROOT'] . '/img/banners/', 0755, true);
+}
+if (!file_exists($_SERVER['DOCUMENT_ROOT'] . '/img/profile/')) {
+    mkdir($_SERVER['DOCUMENT_ROOT'] . '/img/profile/', 0755, true);
+}
+
 // Processar o formulário quando enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $profile_data = [
@@ -51,16 +63,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Processar upload de imagem de perfil
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
-        $upload_dir = __DIR__ . '/../../img/profile/';
+        $upload_dir = $_SERVER['DOCUMENT_ROOT'] . '/img/profile/';
+        if (!file_exists($upload_dir)) {
+            mkdir($upload_dir, 0755, true);
+        }
+        
         $file_extension = strtolower(pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION));
         $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
 
         if (in_array($file_extension, $allowed_extensions)) {
-            $new_filename = 'profile.' . $file_extension;
+            $new_filename = 'profile_' . time() . '.' . $file_extension;
             $upload_path = $upload_dir . $new_filename;
 
             if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $upload_path)) {
-                $profile_data['photo'] = 'img/profile/' . $new_filename;
+                $profile_data['photo'] = '/img/profile/' . $new_filename;
+            }
+        }
+    }
+
+    // Processar upload do banner
+    if (isset($_FILES['banner_image']) && $_FILES['banner_image']['error'] === UPLOAD_ERR_OK) {
+        $upload_dir = $_SERVER['DOCUMENT_ROOT'] . '/img/banners/';
+        $file_extension = strtolower(pathinfo($_FILES['banner_image']['name'], PATHINFO_EXTENSION));
+        $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
+
+        if (in_array($file_extension, $allowed_extensions)) {
+            $new_filename = 'banner_' . time() . '.' . $file_extension;
+            $upload_path = $upload_dir . $new_filename;
+
+            if (move_uploaded_file($_FILES['banner_image']['tmp_name'], $upload_path)) {
+                $profile_data['banner'] = '/img/banners/' . $new_filename;
             }
         }
     }
@@ -71,6 +103,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     if (empty($profile_data['banner']) && isset($profile['banner'])) {
         $profile_data['banner'] = $profile['banner'];
+    }
+
+    // Adicione após o processamento do upload para debug
+    if (isset($_FILES['profile_image']) || isset($_FILES['banner_image'])) {
+        error_log('Upload attempt: ' . print_r($_FILES, true));
     }
 
     // Salvar os dados
@@ -235,7 +272,7 @@ if (!file_exists(__DIR__ . '/../../data/profile.json')) {
                             <label for="profile_image" class="form-label">Foto de Perfil</label>
                             <?php if (!empty($profile['photo'])): ?>
                                 <div class="mb-2">
-                                    <img src="../<?php echo htmlspecialchars($profile['photo']); ?>" 
+                                    <img src="<?php echo htmlspecialchars($profile['photo']); ?>" 
                                          alt="Imagem atual" 
                                          class="img-thumbnail" 
                                          style="max-width: 200px;">
@@ -248,6 +285,26 @@ if (!file_exists(__DIR__ . '/../../data/profile.json')) {
                                    accept="image/*">
                             <small class="form-text text-muted">
                                 Deixe em branco para manter a imagem atual. Formatos aceitos: JPG, JPEG, PNG, GIF
+                            </small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="banner_image" class="form-label">Banner do Perfil</label>
+                            <?php if (!empty($profile['banner'])): ?>
+                                <div class="mb-2">
+                                    <img src="<?php echo htmlspecialchars($profile['banner']); ?>" 
+                                         alt="Banner atual" 
+                                         class="img-thumbnail" 
+                                         style="max-width: 100%; height: auto;">
+                                </div>
+                            <?php endif; ?>
+                            <input type="file" 
+                                   class="form-control" 
+                                   id="banner_image" 
+                                   name="banner_image" 
+                                   accept="image/*">
+                            <small class="form-text text-muted">
+                                Tamanho recomendado: 1200x300 pixels. Formatos aceitos: JPG, JPEG, PNG, GIF
                             </small>
                         </div>
 
