@@ -99,12 +99,6 @@ body {
     margin-bottom: 2px;
 }
 
-.banner-status {
-    color: rgba(255,255,255,0.9);
-    font-size: 0.9rem;
-    margin-bottom: 8px;
-}
-
 .banner-sections {
     display: flex;
     align-items: center;
@@ -263,14 +257,49 @@ body {
     -webkit-box-orient: vertical;
     overflow: hidden;
     -webkit-line-clamp: 2;
-    max-height: 85px;
+    max-height: 100px;
     position: relative;
     padding-bottom: 20px;
+    transition: max-height 0.3s ease-out;
 }
 
 .bio.expanded {
     -webkit-line-clamp: unset;
-    max-height: none;
+    max-height: 1000px;
+}
+
+.bio .social-buttons {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease-out;
+    margin-top: 15px;
+}
+
+.bio.expanded .social-buttons {
+    opacity: 1;
+    height: auto;
+    overflow: visible;
+}
+
+.bio .location-details {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease-out;
+    margin-top: 15px;
+}
+
+.bio.expanded .location-details {
+    opacity: 1;
+    height: auto;
+    overflow: visible;
+}
+
+.location-details {
+    margin-top: 20px !important;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
 }
 
 .bio strong {
@@ -312,36 +341,33 @@ body {
 .social-buttons {
     display: flex;
     gap: 10px;
-    margin: 25px 0;
-    overflow-x: auto;
-    padding: 0 2px;
-    -webkit-overflow-scrolling: touch;
+    margin: 15px 0;
 }
 
 .social-button {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     padding: 8px 16px;
-    background: #f8f9fa;
-    border: 1px solid #eee;
-    border-radius: 100px;
-    color: #13151a;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px;
     text-decoration: none;
-    font-size: 0.9rem;
-    white-space: nowrap;
+    color: #333;
     transition: all 0.2s ease;
 }
 
 .social-button:hover {
-    background: #f0f2f5;
+    background-color: #f5f5f5;
     transform: translateY(-1px);
 }
 
 .social-button img {
     width: 20px;
     height: 20px;
-    object-fit: contain;
+}
+
+.social-button span {
+    font-size: 14px;
 }
 
 .content-counters {
@@ -366,19 +392,20 @@ body {
 .offer-join {
     background: #f8f9fa;
     border-radius: 15px;
-    padding: 20px;
+    padding: 0px;
     border: 1px solid #eee;
 }
 
 .offer-join__content {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    padding: 0 2px;
 }
 
 .offer-join__details {
     font-size: 1.1rem;
     font-weight: 600;
     color: #13151a;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .offer-join__left-time {
@@ -391,9 +418,9 @@ body {
     align-items: flex-start;
     gap: 12px;
     background: #fff;
-    padding: 15px;
+    padding: 12px 15px;
     border-radius: 12px;
-    margin: 15px 0;
+    margin: 12px 0;
     border: 1px solid #eee;
 }
 
@@ -413,43 +440,48 @@ body {
 }
 
 .offer-join__btn {
-    margin-top: 15px;
+    margin-top: 12px;
+    padding: 0 2px;
 }
 
 .subscription-button {
     background: #00aff0;
+    border: none;
+    padding: 14px 20px;
+    font-size: 14px;
+    line-height: 20px;
+    min-width: 78px;
     border-radius: 100px;
-    padding: 15px 20px;
-    margin: 0;
+    transition: opacity .15s ease, background-color .15s ease, box-shadow .15s ease;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
     color: white;
-    font-weight: 500;
+    margin-bottom: 10px;
     cursor: pointer;
-    margin-bottom: 8px;
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
 }
 
 .subscription-button:hover {
     background: #0095cc;
-    transform: translateY(-1px);
 }
 
-.btn-text-wrap {
+.subscription-button .btn-text-wrap {
     display: flex;
-    flex-direction: column;
-    gap: 2px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-transform: none;
 }
 
-.btn-text {
-    font-weight: 600;
-    font-size: 1rem;
+.subscription-button .btn-text {
+    font-weight: bold;
 }
 
-.btn-text__small {
-    font-size: 0.9rem;
+.subscription-button .btn-text__small {
+    font-size: 14px;
     opacity: 0.9;
 }
 
@@ -457,7 +489,7 @@ body {
     text-align: center;
     color: #666;
     font-size: 0.85rem;
-    margin-top: 8px;
+    margin-top: 6px;
 }
 
 .other-options {
@@ -1037,48 +1069,47 @@ body {
 }
 
 .promotion-button {
-    width: 100%;
-    background: #00aff0;
     border: none;
+    padding: 14px 20px;
+    font-size: 14px;
+    line-height: 20px;
+    background: #00aff0;
+    min-width: 78px;
     border-radius: 100px;
-    padding: 15px 20px;
+    transition: opacity .15s ease, background-color .15s ease, box-shadow .15s ease;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    margin-bottom: 16px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    color: white;
 }
 
 .promotion-button:hover {
     background: #0095cc;
-    transform: translateY(-1px);
 }
 
 .promotion-button .btn-text-wrap {
     display: flex;
-    flex-direction: column;
-    gap: 2px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-transform: none;
 }
 
 .promotion-button .btn-text {
-    color: white;
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: bold;
 }
 
 .promotion-button .btn-text__small {
-    color: white;
-    font-size: 0.9rem;
+    font-size: 14px;
     opacity: 0.9;
-    font-weight: normal;
 }
 
 .promotion-button .btn-price {
-    color: white;
-    font-size: 0.95rem;
-    opacity: 0.9;
+    font-weight: bold;
 }
 
 /* Mobile Styles */

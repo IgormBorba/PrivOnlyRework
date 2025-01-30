@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'model_name' => $_POST['name'] ?? '',
         'username' => '@' . strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $_POST['name'])),
         'description' => $_POST['description'] ?? '',
-        'location' => 'São Paulo',
+        'location' => $_POST['location'] ?? 'São Paulo',
         'photo' => '',
         'banner' => '',
         'social_media' => [
@@ -57,7 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]
         ],
         'bio' => $_POST['description'] ?? '',
-        'amazon_wishlist' => 'https://www.amazon.com/hz/wishlist/ls/3P718YLN417DU?ref_=wl_share',
+        'facebook_pixel' => [
+            'id' => $_POST['fb_pixel_id'] ?? '',
+            'token' => $_POST['fb_pixel_token'] ?? ''
+        ],
         'updated_at' => date('Y-m-d H:i:s')
     ];
 
@@ -131,7 +134,7 @@ if (!file_exists(__DIR__ . '/../../data/profile.json')) {
         'photo' => '',
         'banner' => '',
         'description' => '',
-        'location' => 'São Paulo',
+        'location' => '',
         'social_media' => [
             'instagram' => 'https://instagram.com/Mia.monroex',
             'twitter' => 'https://twitter.com/Collegestrippa'
@@ -169,7 +172,10 @@ if (!file_exists(__DIR__ . '/../../data/profile.json')) {
             ]
         ],
         'bio' => '',
-        'amazon_wishlist' => 'https://www.amazon.com/hz/wishlist/ls/3P718YLN417DU?ref_=wl_share'
+        'facebook_pixel' => [
+            'id' => '',
+            'token' => ''
+        ]
     ];
     file_put_contents(__DIR__ . '/../../data/profile.json', json_encode($default_profile, JSON_PRETTY_PRINT));
 }
@@ -201,6 +207,17 @@ if (!file_exists(__DIR__ . '/../../data/profile.json')) {
                                       name="description" 
                                       rows="4" 
                                       required><?php echo htmlspecialchars($profile['bio'] ?? ''); ?></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Localização</label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="location" 
+                                   name="location" 
+                                   value="<?php echo htmlspecialchars($profile['location'] ?? 'São Paulo'); ?>" 
+                                   required>
+                            <small class="text-muted">Ex: São Paulo, Rio de Janeiro, etc.</small>
                         </div>
 
                         <div class="mb-4">
@@ -306,6 +323,33 @@ if (!file_exists(__DIR__ . '/../../data/profile.json')) {
                             <small class="form-text text-muted">
                                 Tamanho recomendado: 1200x300 pixels. Formatos aceitos: JPG, JPEG, PNG, GIF
                             </small>
+                        </div>
+
+                        <div class="mb-4">
+                            <h5>Facebook Pixel</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="fb_pixel_id" class="form-label">Pixel ID</label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="fb_pixel_id" 
+                                           name="fb_pixel_id" 
+                                           value="<?php echo htmlspecialchars($profile['facebook_pixel']['id'] ?? ''); ?>" 
+                                           placeholder="Ex: 123456789012345">
+                                    <small class="text-muted">ID do seu Pixel do Facebook (opcional)</small>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="fb_pixel_token" class="form-label">Token de Acesso</label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="fb_pixel_token" 
+                                           name="fb_pixel_token" 
+                                           value="<?php echo htmlspecialchars($profile['facebook_pixel']['token'] ?? ''); ?>" 
+                                           placeholder="Ex: EAAxxxx...">
+                                    <small class="text-muted">Token de acesso do Pixel (opcional)</small>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="d-grid gap-2">

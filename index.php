@@ -15,6 +15,50 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
   >
   <!-- Your CSS -->
   <link rel="stylesheet" type="text/css" href="/styles/estilos.css" media="screen" />
+
+  <?php if (!empty($profile['facebook_pixel']['id'])): ?>
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    
+    fbq('init', '<?php echo htmlspecialchars($profile['facebook_pixel']['id']); ?>');
+    fbq('track', 'PageView');
+
+    // Função para enviar evento de compra (será chamada apenas após confirmação do pagamento)
+    function sendPurchaseEvent(value, currency = 'USD') {
+      // Garante que o valor seja um número
+      value = parseFloat(value);
+      
+      // Dados do evento de compra
+      const eventData = {
+        value: value,
+        currency: currency,
+        content_type: 'product',
+        content_ids: ['subscription'],
+        content_name: 'Subscription',
+        content_category: 'Subscription',
+        num_items: 1
+      };
+
+      // Dispara o evento via fbq
+      fbq('track', 'Purchase', eventData);
+
+      console.log('Purchase event sent:', eventData);
+    }
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" 
+         src="https://www.facebook.com/tr?id=<?php echo htmlspecialchars($profile['facebook_pixel']['id']); ?>&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+  <?php endif; ?>
 </head>
 
 <body>
@@ -31,7 +75,6 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
               <?php echo htmlspecialchars($profile['model_name']); ?> 🌶️ 🏆
               <i class="bi bi-patch-check-fill verified-icon"></i>
             </div>
-            <div class="banner-status">Available now</div>
             <div class="banner-sections">
               <div class="banner-section-item">
                 <i class="bi bi-image"></i>
@@ -73,17 +116,23 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
     <!-- Bio -->
     <div class="bio">
       <?php echo $profile['bio']; ?>
-      
-      <div class="bio-details">
-        <i class="bi bi-geo-alt"></i>
-        <span><?php echo htmlspecialchars($profile['location']); ?></span>
+
+      <!-- Social Media Buttons (Inside bio) -->
+      <div class="social-buttons">
+        <a href="<?php echo htmlspecialchars($profile['social_media']['instagram']); ?>" target="_blank" rel="nofollow noopener" class="social-button">
+          <img src="https://static2.onlyfans.com/static/prod/f/202501271707-9105fd1645/img/instagram.svg" alt="Instagram">
+          <span>Instagram</span>
+        </a>
+        <a href="<?php echo htmlspecialchars($profile['social_media']['twitter']); ?>" target="_blank" rel="nofollow noopener" class="social-button">
+          <img src="https://static2.onlyfans.com/static/prod/f/202501271707-9105fd1645/img/x.svg" alt="X">
+          <span>X</span>
+        </a>
       </div>
       
-      <div class="bio-details">
-        <i class="bi bi-gift"></i>
-        <a href="<?php echo htmlspecialchars($profile['amazon_wishlist']); ?>" target="_blank" rel="nofollow noopener">
-          <?php echo htmlspecialchars($profile['amazon_wishlist']); ?>
-        </a>
+      <!-- Location (Last item in bio) -->
+      <div class="bio-details location-details">
+        <i class="bi bi-geo-alt"></i>
+        <span><?php echo htmlspecialchars($profile['location']); ?></span>
       </div>
     </div>
     
@@ -91,18 +140,6 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
          onclick="document.querySelector('.bio').classList.toggle('expanded'); 
                   this.textContent = (this.textContent === 'More information' ? 'Less information' : 'More information')">
       More information
-    </div>
-
-    <!-- Social Media Buttons -->
-    <div class="social-buttons">
-      <a href="<?php echo htmlspecialchars($profile['social_media']['instagram']); ?>" target="_blank" rel="nofollow noopener" class="social-button">
-        <img src="https://static2.onlyfans.com/static/prod/f/202501271707-9105fd1645/img/instagram.svg" alt="Instagram">
-        <span>Instagram</span>
-      </a>
-      <a href="<?php echo htmlspecialchars($profile['social_media']['twitter']); ?>" target="_blank" rel="nofollow noopener" class="social-button">
-        <img src="https://static2.onlyfans.com/static/prod/f/202501271707-9105fd1645/img/x.svg" alt="X">
-        <span>X</span>
-      </a>
     </div>
 
     <!-- Counters of posts, photos, videos -->
@@ -133,7 +170,7 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
         </div>
 
         <div class="offer-join__btn">
-      <div class="subscription-button" data-plan="monthly">
+          <div class="subscription-button" data-plan="monthly">
             <div class="btn-text-wrap">
               <span class="btn-text">Subscribe</span>
               <span class="btn-text__small">$<?php echo htmlspecialchars($profile['subscription']['promo_price']); ?> for <?php echo htmlspecialchars($profile['subscription']['promo_days']); ?> days</span>
@@ -160,24 +197,24 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
           <div class="btn-text-wrap">
             <span class="btn-text">Subscribe</span>
             <span class="btn-text__small">3 months (<?php echo htmlspecialchars($profile['bundles']['3months']['discount']); ?>)</span>
+            <span class="btn-price">$<?php echo htmlspecialchars($profile['bundles']['3months']['price']); ?> total</span>
           </div>
-          <span class="btn-price">$<?php echo htmlspecialchars($profile['bundles']['3months']['price']); ?> total</span>
         </button>
 
         <button type="button" class="promotion-button">
           <div class="btn-text-wrap">
             <span class="btn-text">Subscribe</span>
             <span class="btn-text__small">6 months (<?php echo htmlspecialchars($profile['bundles']['6months']['discount']); ?>)</span>
+            <span class="btn-price">$<?php echo htmlspecialchars($profile['bundles']['6months']['price']); ?> total</span>
           </div>
-          <span class="btn-price">$<?php echo htmlspecialchars($profile['bundles']['6months']['price']); ?> total</span>
         </button>
 
         <button type="button" class="promotion-button">
           <div class="btn-text-wrap">
             <span class="btn-text">Subscribe</span>
             <span class="btn-text__small">12 months (<?php echo htmlspecialchars($profile['bundles']['12months']['discount']); ?>)</span>
+            <span class="btn-price">$<?php echo htmlspecialchars($profile['bundles']['12months']['price']); ?> total</span>
           </div>
-          <span class="btn-price">$<?php echo htmlspecialchars($profile['bundles']['12months']['price']); ?> total</span>
         </button>
       </div>
     </div>
@@ -974,6 +1011,47 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
         button.disabled = false;
         button.innerHTML = 'Create Account';
       }, 1000);
+    }
+
+    // Função para processar a resposta da API
+    function processApiResponse(response) {
+        if (response.success) {
+            // Se houver evento de pixel para disparar
+            if (response.pixel_event && response.pixel_event.type === 'purchase') {
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'Purchase', response.pixel_event.data);
+                    console.log('Purchase event sent:', response.pixel_event.data);
+                }
+            }
+            
+            // Processa o restante da resposta...
+            if (response.data.status === 'approved') {
+                showSuccessMessage();
+            } else {
+                showErrorMessage('Payment not approved');
+            }
+        } else {
+            showErrorMessage(response.error || 'Unknown error');
+        }
+    }
+
+    // Função para fazer a requisição de pagamento
+    async function makePayment(payload) {
+        try {
+            const response = await fetch('payment_handler.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+            
+            const data = await response.json();
+            processApiResponse(data);
+        } catch (error) {
+            console.error('Payment error:', error);
+            showErrorMessage('Payment processing error');
+        }
     }
   </script>
 </body>
