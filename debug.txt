@@ -8120,3 +8120,93 @@ Data: Array
 )
 
 --------------------------------------------------
+[2025-01-30 19:57:37] Request Details
+Data: Array
+(
+    [method] => POST
+    [headers] => Array
+        (
+            [Host] => localhost:8000
+            [Connection] => keep-alive
+            [Content-Length] => 322
+            [sec-ch-ua-platform] => "Android"
+            [User-Agent] => Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36
+            [sec-ch-ua] => "Not A(Brand";v="8", "Chromium";v="132", "Brave";v="132"
+            [Content-Type] => application/json
+            [sec-ch-ua-mobile] => ?1
+            [Accept] => */*
+            [Sec-GPC] => 1
+            [Origin] => http://localhost:8000
+            [Sec-Fetch-Site] => same-origin
+            [Sec-Fetch-Mode] => cors
+            [Sec-Fetch-Dest] => empty
+            [Referer] => http://localhost:8000/
+            [Accept-Encoding] => gzip, deflate, br, zstd
+            [Accept-Language] => pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7
+            [Cookie] => PHPSESSID=d7ups03pugkc4iu57icto388dd; _fbp=fb.0.1738277642515.789215888875166965
+        )
+
+    [input] => {"action":"create_card_payment","amount":5500,"installments":1,"card":{"number":"21313131312222","holderName":"ERIKA TALAMONTE GONCALVES SOUSA","expirationMonth":23,"expirationYear":1323,"cvv":"2131"},"customer":{"name":"ERIKA TALAMONTE GONCALVES SOUSA","email":"customer@example.com","document":{"number":"70174641680"}}}
+    [post] => Array
+        (
+        )
+
+    [session] => Array
+        (
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-30 19:57:37] Raw Input
+Data: {"action":"create_card_payment","amount":5500,"installments":1,"card":{"number":"21313131312222","holderName":"ERIKA TALAMONTE GONCALVES SOUSA","expirationMonth":23,"expirationYear":1323,"cvv":"2131"},"customer":{"name":"ERIKA TALAMONTE GONCALVES SOUSA","email":"customer@example.com","document":{"number":"70174641680"}}}
+--------------------------------------------------
+[2025-01-30 19:57:37] Decoded Input
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 5500
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 21313131312222
+            [holderName] => ERIKA TALAMONTE GONCALVES SOUSA
+            [expirationMonth] => 23
+            [expirationYear] => 1323
+            [cvv] => 2131
+        )
+
+    [customer] => Array
+        (
+            [name] => ERIKA TALAMONTE GONCALVES SOUSA
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-30 19:57:37] Processing Action
+Data: create_card_payment
+--------------------------------------------------
+[2025-01-30 19:57:37] Payment Data
+Data: Array
+(
+    [amount] => 5500
+    [installments] => 1
+    [card_data] => present
+    [customer_data] => present
+)
+
+--------------------------------------------------
+[2025-01-30 19:57:37] Payment Handler Error
+Data: Array
+(
+    [error] => Invalid credit card number
+)
+
+--------------------------------------------------
