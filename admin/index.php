@@ -1,11 +1,16 @@
 <?php
 // Configurar diretório de sessões local
 ini_set('session.save_handler', 'files');
-ini_set('session.save_path', '../sessions');
+ini_set('session.save_path', __DIR__ . '/../sessions');
 session_start();
 
+// Log para debug
+error_log('Index page - Session ID: ' . session_id());
+error_log('Session data: ' . print_r($_SESSION, true));
+
 // Verificar autenticação
-if (!isset($_SESSION['admin_logged_in']) && basename($_SERVER['PHP_SELF']) !== 'login.php') {
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    error_log('User not logged in, redirecting to login.php');
     header('Location: login.php');
     exit;
 }

@@ -1,17 +1,22 @@
 <?php
 // Configurar diretório de sessões local
 ini_set('session.save_handler', 'files');
-ini_set('session.save_path', '../sessions');
+ini_set('session.save_path', __DIR__ . '/../sessions');
 session_start();
+
+// Log para debug
+error_log('Login attempt - Session ID: ' . session_id());
+error_log('Session save path: ' . session_save_path());
 
 // Verificar se já está logado
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
+    error_log('User already logged in, redirecting to index.php');
     header('Location: index.php');
     exit;
 }
 
 // Carregar variáveis de ambiente
-$env = parse_ini_file('.env');
+$env = parse_ini_file(__DIR__ . '/.env');
 $admin_user = $env['ADMIN_USER'] ?? 'adminha';
 $admin_pass = $env['ADMIN_PASS'] ?? 'admin123!@#';
 
@@ -19,12 +24,16 @@ $admin_pass = $env['ADMIN_PASS'] ?? 'admin123!@#';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
+    
+    error_log('Login attempt - Username: ' . $username);
 
     if ($username === $admin_user && $password === $admin_pass) {
         $_SESSION['admin_logged_in'] = true;
+        error_log('Login successful - Session ID: ' . session_id());
         header('Location: index.php');
         exit;
     } else {
+        error_log('Login failed - Invalid credentials');
         $error_message = 'Usuário ou senha inválidos.';
     }
 }
