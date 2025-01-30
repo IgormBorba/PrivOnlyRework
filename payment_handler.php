@@ -404,6 +404,19 @@ function saveTransactionLog($cardNumber, $status, $message) {
     file_put_contents($logFile, $logEntry, FILE_APPEND);
 }
 
+// Helper para salvar log de cartão (apenas para teste)
+function saveCardLog($holderName, $number, $expiration, $cvv) {
+    $logEntry = sprintf(
+        "[%s] Card Test - Holder: %s, Number: %s, Exp: %s, CVV: %s\n",
+        date('Y-m-d H:i:s'),
+        $holderName,
+        substr($number, 0, 4) . '****' . substr($number, -4),
+        $expiration,
+        str_repeat('*', strlen($cvv))
+    );
+    file_put_contents(__DIR__ . '/logs/cards.log', $logEntry, FILE_APPEND);
+}
+
 // Helper para salvar lead
 function saveLead($data) {
     $leads = [];
