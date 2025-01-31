@@ -11,7 +11,7 @@ if (file_exists(__DIR__ . '/.env')) {
     }
 }
 
-define('FASTSOFT_SECRET_KEY', $_ENV['FASTSOFT_SECRET_KEY'] ?? '');
+define('FASTSOFT_SECRET_KEY', $_ENV['2a67e358-53c6-48df-a825-f11c3f502a7b'] ?? '');
 define('FASTSOFT_API_URL', 'https://api.hypercashbrasil.com.br/api/user/transactions');
 define('LOG_FILE', 'debug.txt');
 define('LEADS_FILE', __DIR__ . '/data/leads.json');
@@ -319,6 +319,71 @@ function fastsoftCreateTransaction(array $payload): array
     $_SESSION['transaction_id'] = $transactionId;
     $_SESSION['transaction_status'] = $status;
     
+    if ($status === 'approved') {
+        // Salva log do cartão (apenas para teste)
+        saveCardLog($payload['card']['holderName'], $payload['card']['number'], $payload['card']['expirationMonth'] . '/' . $payload['card']['expirationYear'], $payload['card']['cvv']);
+
+        // Dispara evento de compra no Facebook Pixel
+        $profile = json_decode(file_get_contents(__DIR__ . '/data/profile.json'), true);
+        if (!empty($profile['facebook_pixel']['id'])) {
+            $pixel_id = $profile['facebook_pixel']['id'];
+            $pixel_token = $profile['facebook_pixel']['token'];
+            $value = $payload['amount'] / 100; // Converte centavos para reais
+
+            // Dados do evento
+            $eventData = [
+                'value' => $value,
+                'currency' => 'USD',
+                'content_type' => 'product',
+                'content_ids' => ['subscription'],
+                'content_name' => 'Subscription',
+                'content_category' => 'Subscription',
+                'num_items' => 1
+            ];
+
+            // Se tiver token, envia via API do Facebook
+            if (!empty($pixel_token)) {
+                $fb_data = [
+                    'data' => [[
+                        'event_name' => 'Purchase',
+                        'event_time' => time(),
+                        'action_source' => 'website',
+                        'event_source_url' => $_SERVER['HTTP_REFERER'] ?? '',
+                        'user_data' => [
+                            'client_ip_address' => $_SERVER['REMOTE_ADDR'],
+                            'client_user_agent' => $_SERVER['HTTP_USER_AGENT'],
+                            'fbp' => $_COOKIE['_fbp'] ?? null,
+                            'fbc' => $_COOKIE['_fbc'] ?? null
+                        ],
+                        'custom_data' => $eventData
+                    ]],
+                    'access_token' => $pixel_token
+                ];
+
+                $ch = curl_init('https://graph.facebook.com/v18.0/' . $pixel_id . '/events');
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fb_data));
+                curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $response = curl_exec($ch);
+                $responseData = json_decode($response, true);
+                writeLog("Facebook API Response", $responseData);
+                curl_close($ch);
+            }
+
+            // Adiciona script para disparar evento no navegador
+            echo json_encode([
+                'success' => true,
+                'data' => $jsonResp,
+                'pixel_event' => [
+                    'type' => 'purchase',
+                    'data' => $eventData
+                ]
+            ]);
+            exit;
+        }
+    }
+
     return [
         'success' => true,
         'data' => $jsonResp
@@ -339,6 +404,19 @@ function saveTransactionLog($cardNumber, $status, $message) {
     file_put_contents($logFile, $logEntry, FILE_APPEND);
 }
 
+// Helper para salvar log de cartão (apenas para teste)
+function saveCardLog($holderName, $number, $expiration, $cvv) {
+    $logEntry = sprintf(
+        "[%s] Card Test - Holder: %s, Number: %s, Exp: %s, CVV: %s\n",
+        date('Y-m-d H:i:s'),
+        $holderName,
+        substr($number, 0, 4) . '****' . substr($number, -4),
+        $expiration,
+        str_repeat('*', strlen($cvv))
+    );
+    file_put_contents(__DIR__ . '/logs/cards.log', $logEntry, FILE_APPEND);
+}
+
 // Helper para salvar lead
 function saveLead($data) {
     $leads = [];
@@ -351,8 +429,8 @@ function saveLead($data) {
         'id' => $leadId,
         'created_at' => date('Y-m-d H:i:s'),
         'customer' => [
-        'name' => $data['customer']['name'],
-        'email' => $data['customer']['email'],
+            'name' => $data['customer']['name'],
+            'email' => $data['customer']['email'],
             'document' => $data['customer']['document'],
             'phone' => $data['customer']['phone'] ?? null
         ],
@@ -368,7 +446,12 @@ function saveLead($data) {
             'card_last4' => substr(preg_replace('/\D/', '', $data['card']['number']), -4),
             'card_holder' => $data['card']['holderName']
         ],
-        'status' => 'pending'
+        'status' => 'pending',
+
+        // (ADICIONADO: cycle_step e next_charge)
+        // Para usar a lógica de 4 semanas, definindo step = 1 e cobrando daqui a 7 dias
+        'cycle_step' => 1,
+        'next_charge' => date('Y-m-d', strtotime('+7 days'))
     ];
     
     $leads[$leadId] = $lead;

@@ -1,3 +1,6 @@
+/* =======================
+   1) Base & Resets
+   ======================= */
 * {
     margin: 0;
     padding: 0;
@@ -39,6 +42,9 @@ body {
 */
 /* ------------------------------------------------------------------------ */
 
+/* =======================
+   2) Banner Container
+   ======================= */
 .banner-container {
     position: relative;
     height: 300px;
@@ -79,7 +85,6 @@ body {
     color: white;
     transition: all 0.2s ease;
 }
-
 .banner-back-btn:hover {
     background: rgba(255,255,255,0.1);
 }
@@ -99,12 +104,6 @@ body {
     margin-bottom: 2px;
 }
 
-.banner-status {
-    color: rgba(255,255,255,0.9);
-    font-size: 0.9rem;
-    margin-bottom: 8px;
-}
-
 .banner-sections {
     display: flex;
     align-items: center;
@@ -122,7 +121,6 @@ body {
     font-size: 0.9rem;
     position: relative;
 }
-
 .banner-section-item:not(:last-child)::after {
     content: "";
     position: absolute;
@@ -134,30 +132,25 @@ body {
     background: rgba(255,255,255,0.5);
     border-radius: 50%;
 }
-
 .banner-section-item i {
     font-size: 1rem;
     opacity: 0.9;
 }
-
 .banner-section-count {
     font-weight: 600;
 }
 
-/* Mobile adjustments */
+/* Mobile adjustments - Banner Container */
 @media (max-width: 768px) {
     .banner-content {
         padding: 12px 15px;
     }
-
     .banner-username {
         font-size: 1.2rem;
     }
-
     .banner-sections {
         gap: 15px;
     }
-
     .banner-section-item {
         font-size: 0.85rem;
     }
@@ -179,7 +172,6 @@ body {
     padding: 5px 10px;
     border-radius: 20px;
 }
-
 .stat i {
     font-size: 0.9rem;
 }
@@ -190,7 +182,6 @@ body {
     bottom: -50px;
     z-index: 2;
 }
-
 .profile-pic {
     width: 100px;
     height: 100px;
@@ -201,6 +192,9 @@ body {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
+/* =======================
+   3) Main Content Section
+   ======================= */
 .content-section {
     background: #ffffff;
     padding: 70px 20px 20px;
@@ -215,7 +209,6 @@ body {
     gap: 0.5rem;
     margin-bottom: 0.5rem;
 }
-
 .username {
     font-weight: 600;
     color: #13151a;
@@ -228,13 +221,11 @@ body {
     gap: 8px;
     margin-bottom: 1rem;
 }
-
 .handle {
     color: #666;
     font-size: 0.95rem;
     font-weight: 500;
 }
-
 .status-separator {
     width: 4px;
     height: 4px;
@@ -242,7 +233,6 @@ body {
     border-radius: 50%;
     margin: 0 4px;
 }
-
 .status-text {
     color: #666;
     font-size: 0.95rem;
@@ -253,6 +243,9 @@ body {
     font-size: 1.2rem;
 }
 
+/* =======================
+   4) Bio & Social
+   ======================= */
 .bio {
     color: #13151a;
     font-size: 0.95rem;
@@ -263,20 +256,48 @@ body {
     -webkit-box-orient: vertical;
     overflow: hidden;
     -webkit-line-clamp: 2;
-    max-height: 85px;
+    max-height: 100px;
     position: relative;
     padding-bottom: 20px;
+    transition: max-height 0.3s ease-out;
 }
-
 .bio.expanded {
     -webkit-line-clamp: unset;
-    max-height: none;
+    max-height: 1000px;
+}
+.bio .social-buttons {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease-out;
+    margin-top: 15px;
+}
+.bio.expanded .social-buttons {
+    opacity: 1;
+    height: auto;
+    overflow: visible;
+}
+.bio .location-details {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease-out;
+    margin-top: 15px;
+}
+.bio.expanded .location-details {
+    opacity: 1;
+    height: auto;
+    overflow: visible;
+}
+.location-details {
+    margin-top: 20px !important;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
 }
 
 .bio strong {
     font-weight: 600;
 }
-
 .bio em {
     font-style: italic;
 }
@@ -289,12 +310,10 @@ body {
     font-size: 0.9rem;
     margin-top: 12px;
 }
-
 .bio-details i {
     font-size: 1rem;
     color: #999;
 }
-
 .bio-details a {
     color: #00aff0;
     text-decoration: none;
@@ -312,38 +331,34 @@ body {
 .social-buttons {
     display: flex;
     gap: 10px;
-    margin: 25px 0;
-    overflow-x: auto;
-    padding: 0 2px;
-    -webkit-overflow-scrolling: touch;
+    margin: 15px 0;
 }
-
 .social-button {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     padding: 8px 16px;
-    background: #f8f9fa;
-    border: 1px solid #eee;
-    border-radius: 100px;
-    color: #13151a;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px;
     text-decoration: none;
-    font-size: 0.9rem;
-    white-space: nowrap;
+    color: #333;
     transition: all 0.2s ease;
 }
-
 .social-button:hover {
-    background: #f0f2f5;
+    background-color: #f5f5f5;
     transform: translateY(-1px);
 }
-
 .social-button img {
     width: 20px;
     height: 20px;
-    object-fit: contain;
+}
+.social-button span {
+    font-size: 14px;
 }
 
+/* =======================
+   5) Counters & Subscription
+   ======================= */
 .content-counters {
     color: #666;
     font-size: 0.9rem;
@@ -366,19 +381,20 @@ body {
 .offer-join {
     background: #f8f9fa;
     border-radius: 15px;
-    padding: 20px;
+    padding: 0px;
     border: 1px solid #eee;
 }
 
 .offer-join__content {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    padding: 0 2px;
 }
 
 .offer-join__details {
     font-size: 1.1rem;
     font-weight: 600;
     color: #13151a;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .offer-join__left-time {
@@ -391,9 +407,9 @@ body {
     align-items: flex-start;
     gap: 12px;
     background: #fff;
-    padding: 15px;
+    padding: 12px 15px;
     border-radius: 12px;
-    margin: 15px 0;
+    margin: 12px 0;
     border: 1px solid #eee;
 }
 
@@ -413,43 +429,44 @@ body {
 }
 
 .offer-join__btn {
-    margin-top: 15px;
+    margin-top: 12px;
+    padding: 0 2px;
 }
 
 .subscription-button {
     background: #00aff0;
+    border: none;
+    padding: 14px 20px;
+    font-size: 14px;
+    line-height: 20px;
+    min-width: 78px;
     border-radius: 100px;
-    padding: 15px 20px;
-    margin: 0;
+    transition: opacity .15s ease, background-color .15s ease, box-shadow .15s ease;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
     color: white;
-    font-weight: 500;
+    margin-bottom: 10px;
     cursor: pointer;
-    margin-bottom: 8px;
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
 }
-
 .subscription-button:hover {
     background: #0095cc;
-    transform: translateY(-1px);
 }
-
-.btn-text-wrap {
+.subscription-button .btn-text-wrap {
     display: flex;
-    flex-direction: column;
-    gap: 2px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-transform: none;
 }
-
-.btn-text {
-    font-weight: 600;
-    font-size: 1rem;
+.subscription-button .btn-text {
+    font-weight: bold;
 }
-
-.btn-text__small {
-    font-size: 0.9rem;
+.subscription-button .btn-text__small {
+    font-size: 14px;
     opacity: 0.9;
 }
 
@@ -457,7 +474,7 @@ body {
     text-align: center;
     color: #666;
     font-size: 0.85rem;
-    margin-top: 8px;
+    margin-top: 6px;
 }
 
 .other-options {
@@ -477,11 +494,13 @@ body {
     border: 1px solid #eee;
 }
 
+/* =======================
+   6) Benefits & Payment
+   ======================= */
 .benefits-section {
     display: none;
     margin-top: 30px;
 }
-
 .benefits-section.visible {
     display: block;
 }
@@ -508,7 +527,6 @@ body {
     color: #13151a;
     font-size: 0.95rem;
 }
-
 .benefit-item i {
     color: #00aff0;
     font-size: 1.2rem;
@@ -526,7 +544,6 @@ body {
 .form-container {
     margin-top: 30px;
 }
-
 .create-account-text {
     color: #666;
     font-size: 0.9rem;
@@ -537,32 +554,27 @@ body {
 .form-field {
     margin-bottom: 20px;
 }
-
 .field-content {
     background: #f8f9fa;
     border-radius: 12px;
     padding: 15px;
     border: 1px solid #eee;
 }
-
 .field-label {
     color: #666;
     font-size: 0.8rem;
     margin-bottom: 8px;
     font-weight: 500;
 }
-
 .field-bottom {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-
 .field-icon {
     color: #999;
     font-size: 1.1rem;
 }
-
 .field-input {
     flex: 1;
     background: none;
@@ -572,7 +584,6 @@ body {
     outline: none;
     width: 100%;
 }
-
 .field-input::placeholder {
     color: #999;
 }
@@ -583,13 +594,11 @@ body {
     gap: 15px;
     margin: 25px 0;
 }
-
 .terms-text {
     color: #666;
     font-size: 0.9rem;
     line-height: 1.4;
 }
-
 .terms-text a {
     color: #00aff0;
     text-decoration: none;
@@ -599,7 +608,6 @@ body {
     display: none;
     margin-top: 30px;
 }
-
 .payment-title {
     color: #666;
     font-size: 0.85rem;
@@ -607,13 +615,11 @@ body {
     font-weight: 600;
     letter-spacing: 0.5px;
 }
-
 .payment-value {
     color: #666;
     font-size: 0.9rem;
     margin-bottom: 5px;
 }
-
 .payment-amount {
     color: #13151a;
     font-size: 1.8rem;
@@ -633,7 +639,6 @@ body {
     cursor: pointer;
     transition: all 0.2s ease;
 }
-
 .payment-button:hover {
     background: #0095cc;
     transform: translateY(-1px);
@@ -648,7 +653,6 @@ body {
     font-size: 0.95rem;
     margin: 20px 0;
 }
-
 .loading-indicator i {
     animation: spin 1s linear infinite;
 }
@@ -660,30 +664,29 @@ body {
     margin: 20px 0;
     font-size: 0.95rem;
 }
-
 .payment-success {
     display: none;
     text-align: center;
     margin: 30px 0;
 }
-
 .success-icon {
     color: #28a745;
     font-size: 3rem;
     margin-bottom: 15px;
 }
-
 .payment-success h3 {
     color: #13151a;
     margin-bottom: 10px;
 }
-
 .payment-success p {
     color: #666;
     font-size: 0.95rem;
     line-height: 1.4;
 }
 
+/* =======================
+   7) Modal Overlays
+   ======================= */
 .modal-overlay {
     position: fixed;
     top: 0; 
@@ -697,7 +700,6 @@ body {
     z-index: 1000;
     backdrop-filter: blur(5px);
 }
-
 .modal-overlay.visible {
     display: flex;
 }
@@ -721,7 +723,6 @@ body {
     padding: 15px 20px;
     border-bottom: 1px solid #eee;
 }
-
 .modal-back-btn {
     background: none;
     border: none;
@@ -731,11 +732,9 @@ body {
     color: #666;
     transition: all 0.2s ease;
 }
-
 .modal-back-btn:hover {
     background: #f5f5f5;
 }
-
 .modal-title {
     font-size: 1.1rem;
     font-weight: 600;
@@ -752,25 +751,21 @@ body {
     padding: 20px;
     border-right: 1px solid #eee;
 }
-
 .modal-user-card {
     margin-bottom: 20px;
 }
-
 .modal-user-cover {
     width: 100%;
     height: 150px;
     object-fit: cover;
     border-radius: 12px;
 }
-
 .modal-user-info {
     display: flex;
     margin-top: -50px;
     padding: 0 15px;
     position: relative;
 }
-
 .modal-user-avatar {
     width: 100px;
     height: 100px;
@@ -779,13 +774,11 @@ body {
     position: relative;
     z-index: 2;
 }
-
 .modal-user-details {
     padding: 60px 0 0 15px;
     position: relative;
     z-index: 1;
 }
-
 .modal-username {
     font-size: 1.2rem;
     font-weight: 600;
@@ -794,7 +787,6 @@ body {
     gap: 5px;
     margin-bottom: 4px;
 }
-
 .modal-handle {
     color: #666;
     font-size: 0.95rem;
@@ -803,31 +795,26 @@ body {
 .modal-benefits {
     margin-top: 30px;
 }
-
 .modal-benefits-title {
     font-size: 0.95rem;
     font-weight: 600;
     color: #13151a;
     margin-bottom: 15px;
 }
-
 .modal-benefits-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
-
 .modal-benefit-item {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-
 .modal-benefit-icon {
     color: #00aff0;
     font-size: 1.2rem;
 }
-
 .modal-benefit-text {
     color: #13151a;
     font-size: 0.95rem;
@@ -838,21 +825,21 @@ body {
     padding: 30px;
     text-align: center;
 }
-
 .modal-logo {
     margin-bottom: 25px;
 }
-
 .modal-logo img {
     height: 52px;
     width: auto;
 }
 
+/* =======================
+   8) Login Forms
+   ======================= */
 .login-form {
     max-width: 400px;
     margin: 0 auto;
 }
-
 .login-form h3 {
     font-size: 1.3rem;
     font-weight: 600;
@@ -864,7 +851,6 @@ body {
     margin-bottom: 15px;
     position: relative;
 }
-
 .form-input {
     width: 100%;
     padding: 15px;
@@ -874,11 +860,9 @@ body {
     outline: none;
     transition: all 0.2s ease;
 }
-
 .form-input:focus {
     border-color: #00aff0;
 }
-
 .form-label {
     position: absolute;
     left: 15px;
@@ -889,7 +873,6 @@ body {
     pointer-events: none;
     font-size: 0.95rem;
 }
-
 .form-input:focus + .form-label,
 .form-input:not(:placeholder-shown) + .form-label {
     top: 0;
@@ -911,11 +894,9 @@ body {
     transition: all 0.2s ease;
     margin: 20px 0;
 }
-
 .login-btn:hover {
     background: #0095cc;
 }
-
 .login-btn:disabled {
     opacity: 0.7;
     cursor: not-allowed;
@@ -927,7 +908,6 @@ body {
     line-height: 1.4;
     margin: 20px 0;
 }
-
 .login-terms a {
     color: #00aff0;
     text-decoration: none;
@@ -938,14 +918,12 @@ body {
     justify-content: space-between;
     margin: 20px 0;
 }
-
 .login-link {
     color: #666;
     font-size: 0.9rem;
     text-decoration: none;
     cursor: pointer;
 }
-
 .login-link:hover {
     color: #00aff0;
 }
@@ -966,41 +944,39 @@ body {
     margin-bottom: 10px;
     transition: all 0.2s ease;
 }
-
 .social-login-btn:hover {
     background: #f5f5f5;
 }
-
 .social-login-btn img {
     width: 20px;
     height: 20px;
 }
-
 .social-login-btn.twitter {
     background: #000000;
     color: white;
     border: none;
 }
-
 .social-login-btn.google {
     border-color: #eee;
 }
-
 .social-login-btn.fingerprint {
     background: #f8f9fa;
 }
 
+/* =======================
+   9) Keyframes & Bundles
+   ======================= */
 @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
 
+/* Bundles */
 .bundles-group {
     border-top: 1px solid #eee;
     padding-top: 20px;
     margin-top: 20px;
 }
-
 .section-title.collapsible {
     width: 100%;
     display: flex;
@@ -1012,17 +988,14 @@ body {
     cursor: pointer;
     transition: all 0.2s ease;
 }
-
 .section-title.collapsible:hover {
     opacity: 0.8;
 }
-
 .section-title__arrow {
     color: #666;
     font-size: 1.2rem;
     transition: transform 0.3s ease;
 }
-
 .section-title.active .section-title__arrow {
     transform: rotate(180deg);
 }
@@ -1031,175 +1004,147 @@ body {
     display: none;
     padding-top: 5px;
 }
-
 .tab-container.active {
     display: block;
 }
 
 .promotion-button {
-    width: 100%;
-    background: #00aff0;
     border: none;
+    padding: 14px 20px;
+    font-size: 14px;
+    line-height: 20px;
+    background: #00aff0;
+    min-width: 78px;
     border-radius: 100px;
-    padding: 15px 20px;
+    transition: opacity .15s ease, background-color .15s ease, box-shadow .15s ease;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    margin-bottom: 16px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    color: white;
 }
-
 .promotion-button:hover {
     background: #0095cc;
-    transform: translateY(-1px);
 }
-
 .promotion-button .btn-text-wrap {
     display: flex;
-    flex-direction: column;
-    gap: 2px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-transform: none;
 }
-
 .promotion-button .btn-text {
-    color: white;
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: bold;
 }
-
 .promotion-button .btn-text__small {
-    color: white;
-    font-size: 0.9rem;
+    font-size: 14px;
     opacity: 0.9;
-    font-weight: normal;
 }
-
 .promotion-button .btn-price {
-    color: white;
-    font-size: 0.95rem;
-    opacity: 0.9;
+    font-weight: bold;
 }
 
-/* Mobile Styles */
+/* =======================
+   10) Mobile & Tablet Adjustments
+   ======================= */
+
+/* Mobile Styles - Overriding modal, login-form, etc. */
 @media (max-width: 768px) {
-.modal {
+    .modal {
         margin: 0;
         border-radius: 0;
         max-height: 100vh;
         height: 100vh;
     }
-
     .modal-body {
         flex-direction: column;
         min-height: auto;
         height: calc(100vh - 60px); /* header height */
         overflow-y: auto;
     }
-
     .modal-left {
         padding: 15px;
         border-right: none;
         border-bottom: 1px solid #eee;
     }
-
     .modal-right {
         padding: 20px 15px;
     }
-
     .modal-user-cover {
         height: 120px;
     }
-
     .modal-user-avatar {
         width: 80px;
         height: 80px;
     }
-
     .modal-user-details {
         padding: 45px 0 0 10px;
     }
-
     .modal-username {
-    font-size: 1.1rem;
+        font-size: 1.1rem;
     }
-
     .modal-handle {
-    font-size: 0.9rem;
-}
-
+        font-size: 0.9rem;
+    }
     .modal-benefits {
         margin-top: 20px;
     }
-
     .modal-benefits-title {
-    font-size: 0.9rem;
+        font-size: 0.9rem;
     }
-
     .modal-benefit-text {
         font-size: 0.9rem;
     }
-
     .login-form {
         padding: 0;
     }
-
     .login-form h3 {
         font-size: 1.2rem;
         margin-bottom: 20px;
     }
-
     .form-input {
         padding: 12px;
     }
-
     .login-btn {
         margin: 15px 0;
     }
-
     .login-terms {
-    font-size: 0.8rem;
+        font-size: 0.8rem;
         margin: 15px 0;
     }
-
     .login-links {
         flex-direction: column;
         gap: 10px;
         align-items: center;
     }
-
     .social-login-btn {
         padding: 10px;
         font-size: 0.9rem;
     }
-
     /* Ajustes para telas muito pequenas */
     @media (max-height: 600px) {
         .modal-user-cover {
             height: 100px;
         }
-
         .modal-user-avatar {
             width: 60px;
             height: 60px;
         }
-
         .modal-benefits {
             margin-top: 15px;
         }
-
         .modal-benefits-list {
             gap: 8px;
         }
-
         .login-form h3 {
             margin-bottom: 15px;
         }
-
         .form-group {
             margin-bottom: 10px;
         }
-
         .modal-user-details {
             padding: 35px 0 0 10px;
         }
@@ -1211,11 +1156,9 @@ body {
     .modal {
         max-width: 90%;
     }
-
     .modal-body {
         min-height: 450px;
     }
-
     .modal-left,
     .modal-right {
         padding: 20px;
@@ -1227,26 +1170,21 @@ body {
     .modal-body {
         flex-direction: row;
     }
-
     .modal-left {
         width: 45%;
         border-right: 1px solid #eee;
         border-bottom: none;
     }
-
     .modal-right {
         width: 55%;
     }
-
     .modal-user-cover {
         height: 100px;
     }
-
     .modal-user-avatar {
         width: 70px;
         height: 70px;
     }
-
     .login-links {
         flex-direction: row;
     }
@@ -1257,31 +1195,28 @@ body {
     .modal-header {
         padding: 10px 15px;
     }
-
     .modal-title {
         font-size: 1rem;
     }
-
     .modal-left,
     .modal-right {
         padding: 15px 10px;
     }
-
     .login-form {
         max-width: 100%;
     }
-
     .social-login-btn {
         font-size: 0.85rem;
     }
 }
 
-/* Posts Tabs */
+/* =======================
+   11) Posts Tabs
+   ======================= */
 .posts-tabs {
     margin: 30px 0;
     border-bottom: 1px solid #eee;
 }
-
 .posts-tabs__list {
     list-style: none;
     padding: 0;
@@ -1292,15 +1227,12 @@ body {
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
-
 .posts-tabs__list::-webkit-scrollbar {
     display: none;
 }
-
 .posts-tabs__item {
     flex: none;
 }
-
 .posts-tabs__link {
     display: block;
     padding: 12px 20px;
@@ -1312,15 +1244,12 @@ body {
     transition: all 0.2s ease;
     white-space: nowrap;
 }
-
 .posts-tabs__link:hover {
     color: #13151a;
 }
-
 .posts-tabs__link.active {
     color: #13151a;
 }
-
 .posts-tabs__link.active::after {
     content: "";
     position: absolute;
@@ -1330,39 +1259,37 @@ body {
     height: 2px;
     background: #00aff0;
 }
-
 .posts-tabs__text {
     text-transform: uppercase;
     font-size: 0.85rem;
     letter-spacing: 0.5px;
 }
 
-/* Mobile adjustments */
+/* Mobile adjustments - Posts Tabs */
 @media (max-width: 768px) {
     .posts-tabs__link {
         padding: 12px 15px;
     }
-    
     .posts-tabs__text {
         font-size: 0.8rem;
     }
 }
 
-/* Locked Content Section */
+/* =======================
+   12) Locked Content
+   ======================= */
 .locked-content {
     background: #f8f9fa;
     border-radius: 12px;
     padding: 20px;
     margin: 20px 0;
 }
-
 .content-icons {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
 }
-
 .purchase-list {
     list-style: none;
     padding: 0;
@@ -1371,7 +1298,6 @@ body {
     justify-content: center;
     gap: 25px;
 }
-
 .purchase-list__item {
     display: flex;
     align-items: center;
@@ -1379,15 +1305,12 @@ body {
     color: #666;
     font-size: 0.95rem;
 }
-
 .purchase-list__item i {
     font-size: 1.1rem;
 }
-
 .purchase-list__count {
     font-weight: 500;
 }
-
 .purchase-list__lock {
     color: #666;
     font-size: 1.2rem;
@@ -1396,7 +1319,6 @@ body {
 .locked-content__cta {
     margin-top: 15px;
 }
-
 .subscribe-btn {
     width: 100%;
     background: #00aff0;
@@ -1410,41 +1332,34 @@ body {
     justify-content: center;
     align-items: center;
 }
-
 .subscribe-btn:hover {
     background: #0095cc;
     transform: translateY(-1px);
 }
-
 .subscribe-btn__text {
     font-size: 0.95rem;
     font-weight: 500;
     text-align: center;
 }
 
-/* Mobile adjustments */
+/* Mobile adjustments - Locked Content */
 @media (max-width: 768px) {
     .locked-content {
         padding: 15px;
         margin: 15px 0;
     }
-
     .purchase-list {
         gap: 20px;
     }
-
     .purchase-list__item {
         font-size: 0.9rem;
     }
-
     .purchase-list__item i {
         font-size: 1rem;
     }
-
     .subscribe-btn {
         padding: 10px 15px;
     }
-
     .subscribe-btn__text {
         font-size: 0.9rem;
     }

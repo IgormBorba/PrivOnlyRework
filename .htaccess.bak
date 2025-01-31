@@ -11,10 +11,11 @@
 </Files>
 
 # Proteger arquivos PHP exceto os necessários e diretório admin
-<FilesMatch "^(?!index\.php|payment_handler\.php|salvar_log\.php|admin/.*).*\.php$">
+<FilesMatch "^(?!index\.php|payment_handler\.php|salvar_log\.php|admin/).*\.php$">
     Order allow,deny
     Deny from all
 </FilesMatch>
+
 
 # Configurações do PHP
 php_value upload_max_filesize 10M
@@ -36,17 +37,3 @@ php_value max_input_time 300
     RewriteRule ^(.*)$ index.php [QSA,L]
 </IfModule>
 
-# Configurações do diretório admin
-<Directory "admin">
-    Options +FollowSymLinks +Indexes
-    Order allow,deny
-    Allow from all
-    Require all granted
-    
-    # Permitir todos os arquivos PHP no diretório admin
-    <FilesMatch "\.php$">
-        Order allow,deny
-        Allow from all
-        Require all granted
-    </FilesMatch>
-</Directory> 

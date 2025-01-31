@@ -174,4 +174,4 @@ function viewTransactionDetails(transaction) {
     
     modal.show();
 }
-</script> 
+</script>

@@ -1,17 +1,22 @@
 <?php
 // Configurar diretório de sessões local
 ini_set('session.save_handler', 'files');
-ini_set('session.save_path', '../sessions');
+ini_set('session.save_path', __DIR__ . '/../sessions');
 session_start();
+
+// Log para debug
+error_log('Login attempt - Session ID: ' . session_id());
+error_log('Session save path: ' . session_save_path());
 
 // Verificar se já está logado
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
+    error_log('User already logged in, redirecting to index.php');
     header('Location: index.php');
     exit;
 }
 
 // Carregar variáveis de ambiente
-$env = parse_ini_file('.env');
+$env = parse_ini_file(__DIR__ . '/.env');
 $admin_user = $env['ADMIN_USER'] ?? 'adminha';
 $admin_pass = $env['ADMIN_PASS'] ?? 'admin123!@#';
 
@@ -19,12 +24,16 @@ $admin_pass = $env['ADMIN_PASS'] ?? 'admin123!@#';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
+    
+    error_log('Login attempt - Username: ' . $username);
 
     if ($username === $admin_user && $password === $admin_pass) {
         $_SESSION['admin_logged_in'] = true;
+        error_log('Login successful - Session ID: ' . session_id());
         header('Location: index.php');
         exit;
     } else {
+        error_log('Login failed - Invalid credentials');
         $error_message = 'Usuário ou senha inválidos.';
     }
 }
@@ -66,6 +75,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: #6c757d;
             margin: 0;
         }
+    </style>
+
+    <!-- Adicionamos este segundo bloco para override do tema dark -->
+    <style>
+    /* -------- TEMA DARK OVERRIDE -------- */
+    body {
+        background-color: #0A0A0A !important;
+        color: #EEE !important;
+    }
+    .login-form {
+        background: #1E1E1E !important;
+        color: #EEE !important;
+        border: 1px solid #333 !important;
+        box-shadow: none !important;
+    }
+    .login-header h1 {
+        color: #FF4444 !important;
+    }
+    .login-header p {
+        color: #aaa !important;
+    }
+    .form-label {
+        color: #FF5555 !important;
+    }
+    .form-control {
+        background: #111 !important;
+        color: #EEE !important;
+        border: 1px solid #333 !important;
+    }
+    .form-control:focus {
+        box-shadow: 0 0 3px #FF4444 !important;
+    }
+    .btn.btn-primary {
+        background: linear-gradient(45deg, #BF0000, #FF4444) !important;
+        border: none !important;
+    }
+    .btn.btn-primary:hover {
+        background: linear-gradient(45deg, #9e0000, #f13131) !important;
+    }
+    .alert.alert-danger {
+        background: #242424 !important;
+        color: #EEE !important;
+        border: 1px solid #444 !important;
+        box-shadow: none !important;
+    }
     </style>
 </head>
 <body>
@@ -128,4 +182,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> 
+</html>
