@@ -286,10 +286,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (in_array($file_extension, $allowed_extensions)) {
             $new_filename = 'banner_' . time() . '.' . $file_extension;
-            $upload_path = $upload_dir + $new_filename;
-
-            // (Linha original sem remover)
-            $upload_path = $upload_dir + $new_filename;
+            $upload_path = $upload_dir . $new_filename;
 
             if (move_uploaded_file($_FILES['banner_image']['tmp_name'], $upload_path)) {
                 $profile_data['banner'] = '/img/banners/' . $new_filename;
