@@ -55,6 +55,16 @@ function writeLog($message, $data = null) {
     file_put_contents(LOG_FILE, $logMessage, FILE_APPEND);
 }
 
+/**
+ * Função de fallback para mb_strtoupper
+ */
+function safeStrToUpper($str) {
+    if (function_exists('mb_strtoupper')) {
+        return mb_strtoupper($str, 'UTF-8');
+    }
+    return strtoupper($str);
+}
+
 // Se for OPTIONS, retorna 200 OK
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
@@ -106,14 +116,14 @@ try {
                 'paymentMethod' => 'CREDIT_CARD',
                 'card' => [
                     'number' => preg_replace('/\D/', '', $cardData['number']),
-                    'holderName' => mb_strtoupper($cardData['holderName'], 'UTF-8'),
+                    'holderName' => safeStrToUpper($cardData['holderName']),
                     'expirationMonth' => (int)$cardData['expirationMonth'],
                     'expirationYear' => (int)$cardData['expirationYear'],
                     'cvv' => $cardData['cvv']
                 ],
                 'installments' => 1,
                 'customer' => [
-                    'name' => mb_strtoupper($customerData['name'], 'UTF-8'),
+                    'name' => safeStrToUpper($customerData['name']),
                     'email' => $_SESSION['user_email'] ?? $customerData['email'],
                     'document' => [
                         'type' => 'CPF',
