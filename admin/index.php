@@ -1,4 +1,7 @@
 <?php
+// Iniciar output buffering no início do arquivo
+ob_start();
+
 // Configurar diretório de sessões local
 ini_set('session.save_handler', 'files');
 ini_set('session.save_path', __DIR__ . '/../sessions');

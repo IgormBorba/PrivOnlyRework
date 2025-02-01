@@ -3,6 +3,10 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Verificar se há uma mensagem de redirecionamento pendente
+$redirect_message = '';
+$redirect_type = '';
+
 // No início do arquivo
 if (!file_exists($_SERVER['DOCUMENT_ROOT'] . '/img/banners/')) {
     mkdir($_SERVER['DOCUMENT_ROOT'] . '/img/banners/', 0755, true);
@@ -309,15 +313,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Salvar os dados
     if (file_put_contents(__DIR__ . '/../../data/profile.json', json_encode($profile_data, JSON_PRETTY_PRINT))) {
-        $_SESSION['message'] = 'Perfil atualizado com sucesso!';
-        $_SESSION['message_type'] = 'success';
+        $redirect_message = 'Perfil atualizado com sucesso!';
+        $redirect_type = 'success';
     } else {
-        $_SESSION['message'] = 'Erro ao atualizar o perfil.';
-        $_SESSION['message_type'] = 'danger';
+        $redirect_message = 'Erro ao atualizar o perfil.';
+        $redirect_type = 'danger';
     }
 
-    header('Location: index.php?page=edit_profile');
-    exit;
+    // Se ainda não houve output, podemos redirecionar
+    if (!headers_sent()) {
+        $_SESSION['message'] = $redirect_message;
+        $_SESSION['message_type'] = $redirect_type;
+        header('Location: index.php?page=edit_profile');
+        exit;
+    }
 }
 
 // Carregar perfil atual
