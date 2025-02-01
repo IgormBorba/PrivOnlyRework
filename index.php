@@ -1159,7 +1159,7 @@ $profile = json_decode(file_get_contents('data/profile.json'), true);
         },
         customer: {
           name: cardHolderName,
-          email: 'customer@example.com',
+          email: userLoginData.email,
           document: { number: "70174641680" }
         }
       };

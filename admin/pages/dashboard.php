@@ -146,11 +146,12 @@ $total_revenue = array_sum(array_column($transactions, 'amount'));
 $env = parse_ini_file(__DIR__ . '/../.env');
 $recurring_interval = $env['RECURRING_INTERVAL'] ?? 7;
 
-/* 4 valores */
+/* 4 valores + taxa do dólar */
 $r7  = $env['RECURRING_7_VALUE']  ?? 0;
 $r14 = $env['RECURRING_14_VALUE'] ?? 0;
 $r21 = $env['RECURRING_21_VALUE'] ?? 0;
 $r28 = $env['RECURRING_28_VALUE'] ?? 0;
+$dollarRate = $env['DOLLAR_RATE'] ?? 5.00; // Taxa padrão caso não definida
 ?>
 
 <!-- 
@@ -343,35 +344,55 @@ body {
     (mantivemos o código PHP dele no topo apenas comentado)
 -->
 
-<!-- Novos campos: 7,14,21,28 dias -->
+<!-- Novos campos: 7,14,21,28 dias + Taxa do Dólar -->
 <div class="row mb-4">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title mb-3">
                     <i class="bi bi-cash-coin"></i>
-                    Valores de Recorrência
+                    Valores de Recorrência (em USD)
                 </h4>
                 <form method="POST" class="row align-items-end">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label for="price_7" class="form-label">Valor (7 dias)</label>
-                        <input type="number" step="0.01" class="form-control" name="price_7" id="price_7"
-                               value="<?php echo $r7; ?>">
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" step="0.01" class="form-control" name="price_7" id="price_7"
+                                   value="<?php echo $r7; ?>">
+                        </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label for="price_14" class="form-label">Valor (14 dias)</label>
-                        <input type="number" step="0.01" class="form-control" name="price_14" id="price_14"
-                               value="<?php echo $r14; ?>">
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" step="0.01" class="form-control" name="price_14" id="price_14"
+                                   value="<?php echo $r14; ?>">
+                        </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label for="price_21" class="form-label">Valor (21 dias)</label>
-                        <input type="number" step="0.01" class="form-control" name="price_21" id="price_21"
-                               value="<?php echo $r21; ?>">
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" step="0.01" class="form-control" name="price_21" id="price_21"
+                                   value="<?php echo $r21; ?>">
+                        </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label for="price_28" class="form-label">Valor (28 dias)</label>
-                        <input type="number" step="0.01" class="form-control" name="price_28" id="price_28"
-                               value="<?php echo $r28; ?>">
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" step="0.01" class="form-control" name="price_28" id="price_28"
+                                   value="<?php echo $r28; ?>">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="dollar_rate" class="form-label">Taxa do Dólar (R$)</label>
+                        <div class="input-group">
+                            <span class="input-group-text">R$</span>
+                            <input type="number" step="0.01" class="form-control" name="dollar_rate" id="dollar_rate"
+                                   value="<?php echo $dollarRate; ?>">
+                        </div>
                     </div>
                     
                     <div class="col-md-12 mt-3">
@@ -385,7 +406,7 @@ body {
         </div>
     </div>
 </div>
-<!-- FIM dos campos de 7,14,21,28 -->
+<!-- FIM dos campos -->
 
 <!-- Resumo -->
 <div class="row mb-4">

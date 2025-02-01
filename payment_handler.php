@@ -33,6 +33,9 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
+// Carrega a taxa do dólar
+$dollarRate = (float)($_ENV['DOLLAR_RATE'] ?? 5.00);
+
 /**
  * Helper para logar
  */
@@ -79,14 +82,14 @@ try {
     
     switch ($action) {
         case 'create_card_payment':
-            // Montamos um payload para a API da FastSoft
-            $amount = (int)($inputJson['amount'] ?? 0);    // valor em centavos
-            $installments = (int)($inputJson['installments'] ?? 1);
-
+            // Converte o valor de dólar para reais
+            $amountUSD = (float)($inputJson['amount'] ?? 0) / 100;    // valor em dólar (centavos para dólar)
+            $amountBRL = (int)($amountUSD * $dollarRate * 100);      // converte para reais e volta para centavos
+            
             $cardData = $inputJson['card'] ?? [];
             $customerData = $inputJson['customer'] ?? [];
             
-            if ($amount <= 0) {
+            if ($amountUSD <= 0) {
                 throw new Exception("Invalid amount");
             }
             if (empty($cardData['number']) || empty($cardData['holderName']) || empty($cardData['expirationMonth']) || empty($cardData['expirationYear']) || empty($cardData['cvv'])) {
@@ -96,9 +99,9 @@ try {
                 throw new Exception("Missing customer document");
             }
 
-            // Montar payload p/ POST - Ajustado para corresponder ao exemplo que funciona
+            // Montar payload p/ POST
             $payload = [
-                'amount' => $amount,
+                'amount' => $amountBRL, // Usa o valor em reais
                 'currency' => 'BRL',
                 'paymentMethod' => 'CREDIT_CARD',
                 'card' => [
@@ -108,10 +111,10 @@ try {
                     'expirationYear' => (int)$cardData['expirationYear'],
                     'cvv' => $cardData['cvv']
                 ],
-                'installments' => $installments,
+                'installments' => 1,
                 'customer' => [
-                    'name' => $customerData['name'] ?? 'NoName',
-                    'email' => $customerData['email'] ?? 'noemail@domain.com',
+                    'name' => mb_strtoupper($customerData['name'], 'UTF-8'),
+                    'email' => $_SESSION['user_email'] ?? $customerData['email'],
                     'document' => [
                         'type' => 'CPF',
                         'number' => preg_replace('/\D/', '', $customerData['document']['number'])
@@ -120,19 +123,55 @@ try {
                 'items' => [
                     [
                         'title' => 'Assinatura Semanal',
-                        'unitPrice' => $amount,
+                        'unitPrice' => $amountBRL,
                         'quantity' => 1,
                         'tangible' => false
                     ]
                 ]
             ];
 
-            // (Opcional) if you have phone
+            // Adiciona endereço apenas se existir
+            if (!empty($customerData['address'])) {
+                $address = [];
+                
+                if (!empty($customerData['address']['street'])) {
+                    $address['street'] = $customerData['address']['street'];
+                }
+                if (!empty($customerData['address']['complement'])) {
+                    $address['complement'] = $customerData['address']['complement'];
+                }
+                if (!empty($customerData['address']['city'])) {
+                    $address['city'] = $customerData['address']['city'];
+                }
+                if (!empty($customerData['address']['state'])) {
+                    $address['state'] = $customerData['address']['state'];
+                }
+                if (!empty($customerData['address']['country'])) {
+                    $address['country'] = $customerData['address']['country'];
+                }
+                if (!empty($customerData['address']['zipCode'])) {
+                    $address['zipCode'] = preg_replace('/\D/', '', $customerData['address']['zipCode']);
+                }
+
+                if (!empty($address)) {
+                    $payload['customer']['address'] = $address;
+                }
+            }
+
+            // Se tiver telefone, adiciona ao payload
             if (!empty($customerData['phone'])) {
-                $payload['customer']['phone'] = $customerData['phone'];
+                $payload['customer']['phone'] = preg_replace('/\D/', '', $customerData['phone']);
             }
 
             $responseData = fastsoftCreateTransaction($payload);
+            
+            // Adiciona os valores em dólar e reais na resposta
+            if ($responseData['success']) {
+                $responseData['amount_usd'] = $amountUSD;
+                $responseData['amount_brl'] = $amountBRL / 100;
+                $responseData['dollar_rate'] = $dollarRate;
+            }
+            
             echo json_encode($responseData);
             exit;
 
