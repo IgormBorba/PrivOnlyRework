@@ -8369,3 +8369,873 @@ Data: Array
 )
 
 --------------------------------------------------
+[2025-01-31 21:54:38] Request Details
+Data: Array
+(
+    [method] => POST
+    [headers] => Array
+        (
+            [Host] => localhost:8000
+            [Connection] => keep-alive
+            [Content-Length] => 277
+            [sec-ch-ua-platform] => "Linux"
+            [User-Agent] => Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36
+            [sec-ch-ua] => "Not A(Brand";v="8", "Chromium";v="132", "Brave";v="132"
+            [Content-Type] => application/json
+            [sec-ch-ua-mobile] => ?0
+            [Accept] => */*
+            [Sec-GPC] => 1
+            [Origin] => http://localhost:8000
+            [Sec-Fetch-Site] => same-origin
+            [Sec-Fetch-Mode] => cors
+            [Sec-Fetch-Dest] => empty
+            [Referer] => http://localhost:8000/
+            [Accept-Encoding] => gzip, deflate, br, zstd
+            [Accept-Language] => pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7
+            [Cookie] => PHPSESSID=ea3njhq46qvkcbe4jkrfst6qgq
+        )
+
+    [input] => {"action":"create_card_payment","amount":700,"installments":1,"card":{"number":"5246742058950098","holderName":"ATS GROUP","expirationMonth":1,"expirationYear":2031,"cvv":"168"},"customer":{"name":"ats group","email":"customer@example.com","document":{"number":"70174641680"}}}
+    [post] => Array
+        (
+        )
+
+    [session] => Array
+        (
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:54:38] Raw Input
+Data: {"action":"create_card_payment","amount":700,"installments":1,"card":{"number":"5246742058950098","holderName":"ATS GROUP","expirationMonth":1,"expirationYear":2031,"cvv":"168"},"customer":{"name":"ats group","email":"customer@example.com","document":{"number":"70174641680"}}}
+--------------------------------------------------
+[2025-01-31 21:54:38] Decoded Input
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 700
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 5246742058950098
+            [holderName] => ATS GROUP
+            [expirationMonth] => 1
+            [expirationYear] => 2031
+            [cvv] => 168
+        )
+
+    [customer] => Array
+        (
+            [name] => ats group
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:54:38] Processing Action
+Data: create_card_payment
+--------------------------------------------------
+[2025-01-31 21:54:38] Payment Data
+Data: Array
+(
+    [amount] => 700
+    [installments] => 1
+    [card_data] => present
+    [customer_data] => present
+)
+
+--------------------------------------------------
+[2025-01-31 21:54:38] Creating credit card transaction
+Data: Array
+(
+    [amount] => 700
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 5246742058950098
+            [holderName] => ATS GROUP
+            [expirationMonth] => 1
+            [expirationYear] => 2031
+            [cvv] => 168
+        )
+
+    [installments] => 1
+    [customer] => Array
+        (
+            [name] => ats group
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Assinatura Semanal
+                    [unitPrice] => 700
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+    [recurring] => Array
+        (
+            [type] => WEEKLY
+            [interval] => 7 # Intervalo de recorrência em dias
+            [startDate] => 2025-01-31
+            [endDate] => 2026-01-31
+            [maxCharges] => 52
+            [chargeDay] => 31
+            [retryCount] => 3
+        )
+
+    [metadata] => Array
+        (
+            [source] => website
+            [plan_type] => weekly
+            [customer_id] => 
+            [subscription_start] => 2025-01-31 21:54:38
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:54:39] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 403
+    [response] => {"message":"Forbidden resource","error":"Forbidden","statusCode":403}
+)
+
+--------------------------------------------------
+[2025-01-31 21:54:46] Request Details
+Data: Array
+(
+    [method] => POST
+    [headers] => Array
+        (
+            [Host] => localhost:8000
+            [Connection] => keep-alive
+            [Content-Length] => 277
+            [sec-ch-ua-platform] => "Android"
+            [User-Agent] => Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36
+            [sec-ch-ua] => "Not A(Brand";v="8", "Chromium";v="132", "Brave";v="132"
+            [Content-Type] => application/json
+            [sec-ch-ua-mobile] => ?1
+            [Accept] => */*
+            [Sec-GPC] => 1
+            [Origin] => http://localhost:8000
+            [Sec-Fetch-Site] => same-origin
+            [Sec-Fetch-Mode] => cors
+            [Sec-Fetch-Dest] => empty
+            [Referer] => http://localhost:8000/
+            [Accept-Encoding] => gzip, deflate, br, zstd
+            [Accept-Language] => pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7
+            [Cookie] => PHPSESSID=ea3njhq46qvkcbe4jkrfst6qgq
+        )
+
+    [input] => {"action":"create_card_payment","amount":700,"installments":1,"card":{"number":"5246742058950098","holderName":"ATS GROUP","expirationMonth":1,"expirationYear":2031,"cvv":"168"},"customer":{"name":"ats group","email":"customer@example.com","document":{"number":"70174641680"}}}
+    [post] => Array
+        (
+        )
+
+    [session] => Array
+        (
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:54:46] Raw Input
+Data: {"action":"create_card_payment","amount":700,"installments":1,"card":{"number":"5246742058950098","holderName":"ATS GROUP","expirationMonth":1,"expirationYear":2031,"cvv":"168"},"customer":{"name":"ats group","email":"customer@example.com","document":{"number":"70174641680"}}}
+--------------------------------------------------
+[2025-01-31 21:54:46] Decoded Input
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 700
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 5246742058950098
+            [holderName] => ATS GROUP
+            [expirationMonth] => 1
+            [expirationYear] => 2031
+            [cvv] => 168
+        )
+
+    [customer] => Array
+        (
+            [name] => ats group
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:54:46] Processing Action
+Data: create_card_payment
+--------------------------------------------------
+[2025-01-31 21:54:46] Payment Data
+Data: Array
+(
+    [amount] => 700
+    [installments] => 1
+    [card_data] => present
+    [customer_data] => present
+)
+
+--------------------------------------------------
+[2025-01-31 21:54:46] Creating credit card transaction
+Data: Array
+(
+    [amount] => 700
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 5246742058950098
+            [holderName] => ATS GROUP
+            [expirationMonth] => 1
+            [expirationYear] => 2031
+            [cvv] => 168
+        )
+
+    [installments] => 1
+    [customer] => Array
+        (
+            [name] => ats group
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Assinatura Semanal
+                    [unitPrice] => 700
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+    [recurring] => Array
+        (
+            [type] => WEEKLY
+            [interval] => 7 # Intervalo de recorrência em dias
+            [startDate] => 2025-01-31
+            [endDate] => 2026-01-31
+            [maxCharges] => 52
+            [chargeDay] => 31
+            [retryCount] => 3
+        )
+
+    [metadata] => Array
+        (
+            [source] => website
+            [plan_type] => weekly
+            [customer_id] => 
+            [subscription_start] => 2025-01-31 21:54:46
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:54:46] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 403
+    [response] => {"message":"Forbidden resource","error":"Forbidden","statusCode":403}
+)
+
+--------------------------------------------------
+[2025-01-31 21:55:35] Request Details
+Data: Array
+(
+    [method] => POST
+    [headers] => Array
+        (
+            [Host] => localhost:8000
+            [Connection] => keep-alive
+            [Content-Length] => 277
+            [sec-ch-ua-platform] => "Android"
+            [User-Agent] => Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36
+            [sec-ch-ua] => "Not A(Brand";v="8", "Chromium";v="132", "Brave";v="132"
+            [Content-Type] => application/json
+            [sec-ch-ua-mobile] => ?1
+            [Accept] => */*
+            [Sec-GPC] => 1
+            [Origin] => http://localhost:8000
+            [Sec-Fetch-Site] => same-origin
+            [Sec-Fetch-Mode] => cors
+            [Sec-Fetch-Dest] => empty
+            [Referer] => http://localhost:8000/
+            [Accept-Encoding] => gzip, deflate, br, zstd
+            [Accept-Language] => pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7
+            [Cookie] => PHPSESSID=ea3njhq46qvkcbe4jkrfst6qgq
+        )
+
+    [input] => {"action":"create_card_payment","amount":700,"installments":1,"card":{"number":"5246742058950098","holderName":"ATS GROUP","expirationMonth":1,"expirationYear":2031,"cvv":"168"},"customer":{"name":"ats group","email":"customer@example.com","document":{"number":"70174641680"}}}
+    [post] => Array
+        (
+        )
+
+    [session] => Array
+        (
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:55:35] Raw Input
+Data: {"action":"create_card_payment","amount":700,"installments":1,"card":{"number":"5246742058950098","holderName":"ATS GROUP","expirationMonth":1,"expirationYear":2031,"cvv":"168"},"customer":{"name":"ats group","email":"customer@example.com","document":{"number":"70174641680"}}}
+--------------------------------------------------
+[2025-01-31 21:55:35] Decoded Input
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 700
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 5246742058950098
+            [holderName] => ATS GROUP
+            [expirationMonth] => 1
+            [expirationYear] => 2031
+            [cvv] => 168
+        )
+
+    [customer] => Array
+        (
+            [name] => ats group
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:55:35] Processing Action
+Data: create_card_payment
+--------------------------------------------------
+[2025-01-31 21:55:35] Payment Data
+Data: Array
+(
+    [amount] => 700
+    [installments] => 1
+    [card_data] => present
+    [customer_data] => present
+)
+
+--------------------------------------------------
+[2025-01-31 21:55:35] Creating credit card transaction
+Data: Array
+(
+    [amount] => 700
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 5246742058950098
+            [holderName] => ATS GROUP
+            [expirationMonth] => 1
+            [expirationYear] => 2031
+            [cvv] => 168
+        )
+
+    [installments] => 1
+    [customer] => Array
+        (
+            [name] => ats group
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Assinatura Semanal
+                    [unitPrice] => 700
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+    [recurring] => Array
+        (
+            [type] => WEEKLY
+            [interval] => 7 # Intervalo de recorrência em dias
+            [startDate] => 2025-01-31
+            [endDate] => 2026-01-31
+            [maxCharges] => 52
+            [chargeDay] => 31
+            [retryCount] => 3
+        )
+
+    [metadata] => Array
+        (
+            [source] => website
+            [plan_type] => weekly
+            [customer_id] => 
+            [subscription_start] => 2025-01-31 21:55:35
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:55:35] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 403
+    [response] => {"message":"Forbidden resource","error":"Forbidden","statusCode":403}
+)
+
+--------------------------------------------------
+[2025-01-31 21:57:31] Request Details
+Data: Array
+(
+    [method] => POST
+    [headers] => Array
+        (
+            [Host] => localhost:8000
+            [Connection] => keep-alive
+            [Content-Length] => 279
+            [sec-ch-ua-platform] => "Android"
+            [User-Agent] => Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36
+            [sec-ch-ua] => "Not A(Brand";v="8", "Chromium";v="132", "Brave";v="132"
+            [Content-Type] => application/json
+            [sec-ch-ua-mobile] => ?1
+            [Accept] => */*
+            [Sec-GPC] => 1
+            [Origin] => http://localhost:8000
+            [Sec-Fetch-Site] => same-origin
+            [Sec-Fetch-Mode] => cors
+            [Sec-Fetch-Dest] => empty
+            [Referer] => http://localhost:8000/
+            [Accept-Encoding] => gzip, deflate, br, zstd
+            [Accept-Language] => pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7
+            [Cookie] => PHPSESSID=ea3njhq46qvkcbe4jkrfst6qgq
+        )
+
+    [input] => {"action":"create_card_payment","amount":700,"installments":1,"card":{"number":"5246742058950098","holderName":"ALTS GROUP","expirationMonth":1,"expirationYear":2031,"cvv":"168"},"customer":{"name":"alts group","email":"customer@example.com","document":{"number":"70174641680"}}}
+    [post] => Array
+        (
+        )
+
+    [session] => Array
+        (
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:57:31] Raw Input
+Data: {"action":"create_card_payment","amount":700,"installments":1,"card":{"number":"5246742058950098","holderName":"ALTS GROUP","expirationMonth":1,"expirationYear":2031,"cvv":"168"},"customer":{"name":"alts group","email":"customer@example.com","document":{"number":"70174641680"}}}
+--------------------------------------------------
+[2025-01-31 21:57:31] Decoded Input
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 700
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 5246742058950098
+            [holderName] => ALTS GROUP
+            [expirationMonth] => 1
+            [expirationYear] => 2031
+            [cvv] => 168
+        )
+
+    [customer] => Array
+        (
+            [name] => alts group
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:57:31] Processing Action
+Data: create_card_payment
+--------------------------------------------------
+[2025-01-31 21:57:31] Payment Data
+Data: Array
+(
+    [amount] => 700
+    [installments] => 1
+    [card_data] => present
+    [customer_data] => present
+)
+
+--------------------------------------------------
+[2025-01-31 21:57:31] Creating credit card transaction
+Data: Array
+(
+    [amount] => 700
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 5246742058950098
+            [holderName] => ALTS GROUP
+            [expirationMonth] => 1
+            [expirationYear] => 2031
+            [cvv] => 168
+        )
+
+    [installments] => 1
+    [customer] => Array
+        (
+            [name] => alts group
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Assinatura Semanal
+                    [unitPrice] => 700
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+    [recurring] => Array
+        (
+            [type] => WEEKLY
+            [interval] => 7 # Intervalo de recorrência em dias
+            [startDate] => 2025-01-31
+            [endDate] => 2026-01-31
+            [maxCharges] => 52
+            [chargeDay] => 31
+            [retryCount] => 3
+        )
+
+    [metadata] => Array
+        (
+            [source] => website
+            [plan_type] => weekly
+            [customer_id] => 
+            [subscription_start] => 2025-01-31 21:57:31
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:57:31] Using API Key
+Data: Array
+(
+    [key] => a3c0b9ba...
+)
+
+--------------------------------------------------
+[2025-01-31 21:57:31] Authorization Header
+Data: Array
+(
+    [header] => Basic YTNjMGI5...
+)
+
+--------------------------------------------------
+[2025-01-31 21:57:31] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 400
+    [response] => {"message":["property recurring should not exist"],"error":"Bad Request","statusCode":400}
+    [curlError] => 
+    [curlInfo] => Array
+        (
+            [url] => https://api.hypercashbrasil.com.br/api/user/transactions
+            [content_type] => application/json; charset=utf-8
+            [http_code] => 400
+            [header_size] => 1586
+            [request_size] => 955
+            [filetime] => -1
+            [ssl_verify_result] => 0
+            [redirect_count] => 0
+            [total_time] => 0.432995
+            [namelookup_time] => 0.002098
+            [connect_time] => 0.064458
+            [pretransfer_time] => 0.170378
+            [size_upload] => 689
+            [size_download] => 90
+            [speed_download] => 207
+            [speed_upload] => 1591
+            [download_content_length] => 90
+            [upload_content_length] => 689
+            [starttransfer_time] => 0.432738
+            [redirect_time] => 0
+            [redirect_url] => 
+            [primary_ip] => 172.67.160.229
+            [certinfo] => Array
+                (
+                )
+
+            [primary_port] => 443
+            [local_ip] => 192.168.2.157
+            [local_port] => 60156
+            [http_version] => 2
+            [protocol] => 2
+            [ssl_verifyresult] => 0
+            [scheme] => HTTPS
+            [appconnect_time_us] => 170188
+            [connect_time_us] => 64458
+            [namelookup_time_us] => 2098
+            [pretransfer_time_us] => 170378
+            [redirect_time_us] => 0
+            [starttransfer_time_us] => 432738
+            [total_time_us] => 432995
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:59:21] Request Details
+Data: Array
+(
+    [method] => POST
+    [headers] => Array
+        (
+            [Host] => localhost:8000
+            [Connection] => keep-alive
+            [Content-Length] => 277
+            [sec-ch-ua-platform] => "Android"
+            [User-Agent] => Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36
+            [sec-ch-ua] => "Not A(Brand";v="8", "Chromium";v="132", "Brave";v="132"
+            [Content-Type] => application/json
+            [sec-ch-ua-mobile] => ?1
+            [Accept] => */*
+            [Sec-GPC] => 1
+            [Origin] => http://localhost:8000
+            [Sec-Fetch-Site] => same-origin
+            [Sec-Fetch-Mode] => cors
+            [Sec-Fetch-Dest] => empty
+            [Referer] => http://localhost:8000/
+            [Accept-Encoding] => gzip, deflate, br, zstd
+            [Accept-Language] => pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7
+            [Cookie] => PHPSESSID=ea3njhq46qvkcbe4jkrfst6qgq
+        )
+
+    [input] => {"action":"create_card_payment","amount":700,"installments":1,"card":{"number":"5246742058950098","holderName":"ATS GROUP","expirationMonth":1,"expirationYear":2031,"cvv":"168"},"customer":{"name":"ats group","email":"customer@example.com","document":{"number":"70174641680"}}}
+    [post] => Array
+        (
+        )
+
+    [session] => Array
+        (
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:59:21] Raw Input
+Data: {"action":"create_card_payment","amount":700,"installments":1,"card":{"number":"5246742058950098","holderName":"ATS GROUP","expirationMonth":1,"expirationYear":2031,"cvv":"168"},"customer":{"name":"ats group","email":"customer@example.com","document":{"number":"70174641680"}}}
+--------------------------------------------------
+[2025-01-31 21:59:21] Decoded Input
+Data: Array
+(
+    [action] => create_card_payment
+    [amount] => 700
+    [installments] => 1
+    [card] => Array
+        (
+            [number] => 5246742058950098
+            [holderName] => ATS GROUP
+            [expirationMonth] => 1
+            [expirationYear] => 2031
+            [cvv] => 168
+        )
+
+    [customer] => Array
+        (
+            [name] => ats group
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [number] => 70174641680
+                )
+
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:59:21] Processing Action
+Data: create_card_payment
+--------------------------------------------------
+[2025-01-31 21:59:21] Payment Data
+Data: Array
+(
+    [amount] => 700
+    [installments] => 1
+    [card_data] => present
+    [customer_data] => present
+)
+
+--------------------------------------------------
+[2025-01-31 21:59:21] Creating credit card transaction
+Data: Array
+(
+    [amount] => 700
+    [currency] => BRL
+    [paymentMethod] => CREDIT_CARD
+    [card] => Array
+        (
+            [number] => 5246742058950098
+            [holderName] => ATS GROUP
+            [expirationMonth] => 1
+            [expirationYear] => 2031
+            [cvv] => 168
+        )
+
+    [installments] => 1
+    [customer] => Array
+        (
+            [name] => ats group
+            [email] => customer@example.com
+            [document] => Array
+                (
+                    [type] => CPF
+                    [number] => 70174641680
+                )
+
+        )
+
+    [items] => Array
+        (
+            [0] => Array
+                (
+                    [title] => Assinatura Semanal
+                    [unitPrice] => 700
+                    [quantity] => 1
+                    [tangible] => 
+                )
+
+        )
+
+    [metadata] => Array
+        (
+            [source] => website
+            [customer_id] => 
+        )
+
+)
+
+--------------------------------------------------
+[2025-01-31 21:59:21] Using API Key
+Data: Array
+(
+    [key] => a3c0b9ba...
+)
+
+--------------------------------------------------
+[2025-01-31 21:59:21] Authorization Header
+Data: Array
+(
+    [header] => Basic YTNjMGI5...
+)
+
+--------------------------------------------------
+[2025-01-31 21:59:28] FastSoft API Response
+Data: Array
+(
+    [httpCode] => 400
+    [response] => {"status":400,"message":"Transação recusada, consulte o motivo.","data":{"id":"48ce718f-9048-4f14-a134-30b84141a9a5","status":"refused"},"error":{"provider":"PrimefyBag","refusedReason":"declined payment classified as high risk by the bank issuer"}}
+    [curlError] => 
+    [curlInfo] => Array
+        (
+            [url] => https://api.hypercashbrasil.com.br/api/user/transactions
+            [content_type] => application/json; charset=utf-8
+            [http_code] => 400
+            [header_size] => 1585
+            [request_size] => 710
+            [filetime] => -1
+            [ssl_verify_result] => 0
+            [redirect_count] => 0
+            [total_time] => 7.175754
+            [namelookup_time] => 0.002525
+            [connect_time] => 0.018911
+            [pretransfer_time] => 0.070763
+            [size_upload] => 444
+            [size_download] => 251
+            [speed_download] => 34
+            [speed_upload] => 61
+            [download_content_length] => 251
+            [upload_content_length] => 444
+            [starttransfer_time] => 7.175492
+            [redirect_time] => 0
+            [redirect_url] => 
+            [primary_ip] => 172.67.160.229
+            [certinfo] => Array
+                (
+                )
+
+            [primary_port] => 443
+            [local_ip] => 192.168.2.157
+            [local_port] => 33612
+            [http_version] => 2
+            [protocol] => 2
+            [ssl_verifyresult] => 0
+            [scheme] => HTTPS
+            [appconnect_time_us] => 70650
+            [connect_time_us] => 18911
+            [namelookup_time_us] => 2525
+            [pretransfer_time_us] => 70763
+            [redirect_time_us] => 0
+            [starttransfer_time_us] => 7175492
+            [total_time_us] => 7175754
+        )
+
+)
+
+--------------------------------------------------

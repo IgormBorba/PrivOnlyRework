@@ -11,8 +11,8 @@ if (file_exists(__DIR__ . '/.env')) {
     }
 }
 
-define('FASTSOFT_SECRET_KEY', $_ENV['2a67e358-53c6-48df-a825-f11c3f502a7b'] ?? '');
-define('FASTSOFT_API_URL', 'https://api.hypercashbrasil.com.br/api/user/transactions');
+define('FASTSOFT_SECRET_KEY', $_ENV['FASTSOFT_SECRET_KEY'] ?? '');
+define('FASTSOFT_API_URL', $_ENV['FASTSOFT_API_URL'] ?? 'https://api.hypercashbrasil.com.br/api/user/transactions');
 define('LOG_FILE', 'debug.txt');
 define('LEADS_FILE', __DIR__ . '/data/leads.json');
 define('TRANSACTIONS_FILE', __DIR__ . '/data/transactions.json');
@@ -206,20 +206,9 @@ try {
                         'tangible' => false
                     ]
                 ],
-                'recurring' => [
-                    'type' => 'WEEKLY',
-                    'interval' => $_ENV['RECURRING_INTERVAL'] ?? 7, // Intervalo em dias, default 7
-                    'startDate' => date('Y-m-d'),
-                    'endDate' => date('Y-m-d', strtotime('+1 year')),
-                    'maxCharges' => 52, // 52 semanas
-                    'chargeDay' => (int)date('d'),
-                    'retryCount' => 3
-                ],
                 'metadata' => [
                     'source' => 'website',
-                    'plan_type' => 'weekly',
-                    'customer_id' => $_SESSION['user_id'] ?? null,
-                    'subscription_start' => date('Y-m-d H:i:s')
+                    'customer_id' => $_SESSION['user_id'] ?? null
                 ]
             ];
 
@@ -252,9 +241,12 @@ try {
 function fastsoftCreateTransaction(array $payload): array
 {
     writeLog("Creating credit card transaction", $payload);
+    writeLog("Using API Key", ['key' => substr(FASTSOFT_SECRET_KEY, 0, 8) . '...']);
 
     $curl = curl_init();
     $authHeader = base64_encode(FASTSOFT_SECRET_KEY);
+
+    writeLog("Authorization Header", ['header' => 'Basic ' . substr($authHeader, 0, 8) . '...']);
 
     curl_setopt_array($curl, [
         CURLOPT_URL => FASTSOFT_API_URL,
@@ -272,15 +264,20 @@ function fastsoftCreateTransaction(array $payload): array
             "Accept: application/json"
         ],
         CURLOPT_SSL_VERIFYPEER => true,
-        CURLOPT_SSL_VERIFYHOST => 2
+        CURLOPT_SSL_VERIFYHOST => 2,
+        CURLOPT_VERBOSE => true
     ]);
 
     $response = curl_exec($curl);
     $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    $curlError = curl_error($curl);
+    $curlInfo = curl_getinfo($curl);
 
     writeLog("FastSoft API Response", [
         'httpCode' => $httpCode,
-        'response' => $response
+        'response' => $response,
+        'curlError' => $curlError,
+        'curlInfo' => $curlInfo
     ]);
 
     if (curl_errno($curl)) {
